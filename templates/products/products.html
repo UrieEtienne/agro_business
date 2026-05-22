@@ -1,0 +1,275 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Nos Produits
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+    body{
+        background: #f4f7f2;
+        font-family: Arial, sans-serif;
+    }
+
+    /* HERO */
+
+    .hero{
+        background:
+            linear-gradient(rgba(0,0,0,0.6),
+            rgba(0,0,0,0.6)),
+            url("{% static 'images/products-bg.jpg' %}");
+
+        background-size: cover;
+        background-position: center;
+
+        padding: 120px 20px;
+
+        text-align: center;
+
+        color: white;
+    }
+
+    .hero h1{
+
+        font-size: 55px;
+        font-weight: bold;
+    }
+
+    .hero p{
+
+        font-size: 20px;
+        margin-top: 15px;
+    }
+
+    /* SECTION */
+
+    .products-section{
+
+        padding: 100px 0;
+    }
+
+    /* PRODUIT */
+
+    .product-box{
+
+        margin-bottom: 100px;
+    }
+
+    /* IMAGE */
+
+    .product-image{
+
+        width: 100%;
+        height: 420px;
+
+        object-fit: cover;
+
+        border-radius: 25px;
+
+        transition: 0.5s;
+    }
+
+    .product-image:hover{
+
+        transform: scale(1.02);
+    }
+
+    /* TEXTE */
+
+    .product-content{
+
+        padding: 30px;
+    }
+
+    .product-content h2{
+
+        color: #198754;
+
+        font-size: 42px;
+
+        font-weight: bold;
+
+        margin-bottom: 20px;
+    }
+
+    .product-content p{
+
+        color: #555;
+
+        line-height: 2;
+
+        font-size: 18px;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:768px){
+
+        .hero h1{
+
+            font-size: 38px;
+        }
+
+        .hero p{
+
+            font-size: 18px;
+        }
+
+        .product-content h2{
+
+            font-size: 32px;
+            margin-top: 30px;
+        }
+
+        .product-image{
+
+            height: 300px;
+        }
+
+    }
+
+</style>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="container">
+
+        <h1>
+            Nos Produits Agricoles
+        </h1>
+
+        <p>
+            Des produits frais, naturels et cultivés avec passion en Guinée.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- PRODUITS -->
+
+<section class="products-section">
+
+    <div class="container">
+
+        <!-- CONCOMBRE -->
+
+        <div class="row align-items-center product-box">
+
+            <div class="col-lg-6">
+
+                <img src="{% static 'images/concombre.jpg' %}"
+                     alt="Concombre"
+                     class="product-image">
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="product-content">
+
+                    <h2>
+                        Concombre
+                    </h2>
+
+                    <p>
+
+                        Nos concombres sont cultivés avec des méthodes
+                        agricoles modernes garantissant fraîcheur,
+                        qualité et richesse nutritionnelle.
+
+                        Ils sont adaptés à la consommation locale
+                        et aux besoins des marchés professionnels.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- TOMATE -->
+
+        <div class="row align-items-center product-box flex-lg-row-reverse">
+
+            <div class="col-lg-6">
+
+                <img src="{% static 'images/tomate.jpg' %}"
+                     alt="Tomate"
+                     class="product-image">
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="product-content">
+
+                    <h2>
+                        Tomate
+                    </h2>
+
+                    <p>
+
+                        Nos tomates fraîches sont produites dans
+                        le respect des normes agricoles modernes.
+
+                        Elles offrent une excellente qualité pour
+                        la consommation, la restauration et la
+                        transformation agroalimentaire.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- MANIOC -->
+
+        <div class="row align-items-center product-box">
+
+            <div class="col-lg-6">
+
+                <img src="{% static 'images/manioc.jpg' %}"
+                     alt="Manioc"
+                     class="product-image">
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="product-content">
+
+                    <h2>
+                        Manioc
+                    </h2>
+
+                    <p>
+
+                        Le manioc produit par notre entreprise est
+                        cultivé naturellement pour garantir une
+                        excellente qualité alimentaire.
+
+                        Il est utilisé pour plusieurs besoins
+                        agroalimentaires et commerciaux.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

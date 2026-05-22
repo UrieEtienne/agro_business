@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h1 class="mb-5 text-success">
+        Dashboard Entreprise
+    </h1>
+
+    <div class="row">
+
+        <!-- PUBLICATIONS -->
+        <div class="col-md-3 mb-4">
+
+            <div class="card shadow border-0">
+
+                <div class="card-body text-center">
+
+                    <i class="fas fa-image fa-3x text-success mb-3"></i>
+
+                    <h2>{{ total_media }}</h2>
+
+                    <h5>Publications</h5>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- PRODUITS -->
+        <div class="col-md-3 mb-4">
+
+            <div class="card shadow border-0">
+
+                <div class="card-body text-center">
+
+                    <i class="fas fa-seedling fa-3x text-success mb-3"></i>
+
+                    <h2>{{ total_products }}</h2>
+
+                    <h5>Produits</h5>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- BLOG -->
+        <div class="col-md-3 mb-4">
+
+            <div class="card shadow border-0">
+
+                <div class="card-body text-center">
+
+                    <i class="fas fa-newspaper fa-3x text-success mb-3"></i>
+
+                    <h2>{{ total_posts }}</h2>
+
+                    <h5>Articles</h5>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CONTACTS -->
+        <div class="col-md-3 mb-4">
+
+            <div class="card shadow border-0">
+
+                <div class="card-body text-center">
+
+                    <i class="fas fa-envelope fa-3x text-success mb-3"></i>
+
+                    <h2>{{ total_contacts }}</h2>
+
+                    <h5>Messages</h5>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

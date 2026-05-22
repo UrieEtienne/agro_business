@@ -1,0 +1,255 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Contact - {{ contact.agro_business|default:"Agro Business" }}
+{% endblock %}
+
+{% block meta_description %}
+Contactez-nous pour vos besoins agricoles en Guinée.
+{% endblock %}
+
+{% block meta_keywords %}
+Contact Agriculture Guinée, Agro Business, WhatsApp, Email
+{% endblock %}
+
+{% block og_title %}
+Contact - Agro Business
+{% endblock %}
+
+{% block og_description %}
+Contact rapide pour devis et informations agricoles.
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+    .contact-header {
+        background: linear-gradient(rgba(0,0,0,0.6),
+                    rgba(0,0,0,0.6)),
+                    url("{% static 'images/contact-bg.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        padding: 100px 20px;
+        border-radius: 20px;
+        color: white;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .contact-card {
+        background: white;
+        border-radius: 20px;
+        padding: 35px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        transition: 0.3s;
+        height: 100%;
+    }
+
+    .contact-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .contact-info p {
+        font-size: 17px;
+        margin-bottom: 15px;
+    }
+
+    .contact-info i {
+        color: green;
+        margin-right: 10px;
+        font-size: 20px;
+    }
+
+    .social-links a {
+        display: inline-block;
+        width: 45px;
+        height: 45px;
+        line-height: 45px;
+        text-align: center;
+        border-radius: 50%;
+        background: green;
+        color: white;
+        margin-right: 10px;
+        transition: 0.3s;
+        font-size: 18px;
+    }
+
+    .social-links a:hover {
+        background: darkgreen;
+        transform: scale(1.1);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        border-radius: 12px;
+        padding: 12px;
+        border: 1px solid #ddd;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .contact-form textarea {
+        height: 150px;
+    }
+
+    .contact-btn {
+        background: green;
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 12px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .contact-btn:hover {
+        background: darkgreen;
+    }
+
+    .map-container iframe {
+        width: 100%;
+        height: 450px;
+        border: 0;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+</style>
+
+<!-- HERO -->
+
+<section class="contact-header">
+
+    <h1 class="display-4 fw-bold">
+        Contactez-nous
+    </h1>
+
+    <p class="lead">
+        Nous sommes disponibles pour répondre à toutes vos questions.
+    </p>
+
+</section>
+
+<!-- CONTACT -->
+
+<section class="container pb-5">
+
+    <div class="row g-4">
+
+        <!-- INFOS -->
+
+        <div class="col-lg-5">
+
+            <div class="contact-card contact-info">
+
+                <h2 class="mb-4">
+                    Nos Informations
+                </h2>
+
+                <p>
+                    <i class="bi bi-telephone-fill"></i>
+                    <strong>Téléphone :</strong>
+                    {{ contact.phone }}
+                </p>
+
+                <p>
+                    <i class="bi bi-whatsapp"></i>
+                    <strong>WhatsApp :</strong>
+                    {{ contact.whatsapp }}
+                </p>
+
+                <p>
+                    <i class="bi bi-envelope-fill"></i>
+                    <strong>Email :</strong>
+                    {{ contact.email }}
+                </p>
+
+                <p>
+                    <i class="bi bi-geo-alt-fill"></i>
+                    <strong>Adresse :</strong>
+                    {{ contact.address }}
+                </p>
+
+                <hr class="my-4">
+
+                <h4 class="mb-3">
+                    Réseaux sociaux
+                </h4>
+
+                <div class="social-links">
+
+                    <a href="{{ contact.facebook }}">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+
+                    <a href="{{ contact.instagram }}">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+
+                    <a href="{{ contact.linkedin }}">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+
+                    <a href="{{ contact.youtube }}">
+                        <i class="bi bi-youtube"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- FORM -->
+
+        <div class="col-lg-7">
+
+            <div class="contact-card">
+
+                <h2 class="mb-4">
+                    Envoyer un message
+                </h2>
+
+                <form method="POST" class="contact-form">
+
+                    {% csrf_token %}
+
+                    {{ form.as_p }}
+
+                    <button class="contact-btn">
+                        Envoyer le message
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- MAP -->
+
+<section class="container pb-5">
+
+    <div class="mb-4 text-center">
+
+        <h2>
+            Notre Localisation
+        </h2>
+
+    </div>
+
+    <div class="map-container">
+
+        {{ contact.google_maps|safe }}
+
+    </div>
+
+</section>
+
+{% endblock %}
