@@ -62,24 +62,23 @@ Contact rapide pour devis et informations agricoles.
         font-size: 20px;
     }
 
-    .social-links a {
-        display: inline-block;
-        width: 45px;
-        height: 45px;
-        line-height: 45px;
-        text-align: center;
-        border-radius: 50%;
-        background: green;
-        color: white;
-        margin-right: 10px;
-        transition: 0.3s;
-        font-size: 18px;
-    }
+    .social-icon{
+    width: 55px;
+    height: 55px;
+    color: white;
+    font-size: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: 0.3s;
+}
 
-    .social-links a:hover {
-        background: darkgreen;
-        transform: scale(1.1);
-    }
+.social-icon:hover{
+    transform: scale(1.1);
+    color: white;
+}
 
     .contact-form input,
     .contact-form textarea {
@@ -174,26 +173,31 @@ Contact rapide pour devis et informations agricoles.
 
                 <hr class="my-4">
 
-                <h4 class="mb-3">
+               <h4 class="mb-3">
                     Réseaux sociaux
                 </h4>
 
-                <div class="social-links">
+                <div class="social-links d-flex gap-3">
 
-                    <a href="{{ contact.facebook }}">
+                    <a href="{{ contact.facebook }}"
+                        class="social-icon">
+
                         <i class="bi bi-facebook"></i>
+
                     </a>
 
-                    <a href="{{ contact.instagram }}">
+                    <a href="{{ contact.instagram }}"
+                        class="social-icon">
+
                         <i class="bi bi-instagram"></i>
+
                     </a>
 
-                    <a href="{{ contact.linkedin }}">
+                    <a href="{{ contact.linkedin }}"
+                        class="social-icon">
+
                         <i class="bi bi-linkedin"></i>
-                    </a>
 
-                    <a href="{{ contact.youtube }}">
-                        <i class="bi bi-youtube"></i>
                     </a>
 
                 </div>
@@ -234,19 +238,57 @@ Contact rapide pour devis et informations agricoles.
 
 <!-- MAP -->
 
+<!-- LOCALISATION -->
 <section class="container pb-5">
 
-    <div class="mb-4 text-center">
+    <div class="mb-5 text-center">
 
-        <h2>
+        <h2 class="fw-bold text-success">
             Notre Localisation
         </h2>
 
+        <p class="text-muted fs-5">
+
+            Retrouvez facilement Eden Agro Business à :
+
+            <br><br>
+
+            Guinée, Conakry, Mafranya  
+            (près du grand carrefour / marché principal du quartier)
+
+            <br><br>
+
+            Nous sommes accessibles facilement en voiture,
+            moto et transport public.
+
+        </p>
+
     </div>
 
-    <div class="map-container">
+    <!-- GOOGLE MAP -->
+    <div class="map-container shadow rounded overflow-hidden">
 
-        {{ contact.google_maps|safe }}
+        <iframe
+            src="https://www.google.com/maps?q=Mafranya,Conakry,Guinea&output=embed"
+            width="100%"
+            height="500"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy">
+        </iframe>
+
+    </div>
+
+    <!-- GPS -->
+    <div class="text-center mt-4">
+
+        <a href="https://www.google.com/maps/search/?api=1&query=Mafranya,Conakry,Guinea"
+           target="_blank"
+           class="btn btn-success btn-lg">
+
+            Ouvrir avec Google Maps GPS
+
+        </a>
 
     </div>
 

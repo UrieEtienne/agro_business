@@ -178,6 +178,13 @@ footer a:hover {
 
     color: #555;
 }
+.card {
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
 
 /* PRODUIT */
 .hero{

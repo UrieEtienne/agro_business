@@ -3,6 +3,11 @@ from django.db import models
 
 class Media(models.Model):
 
+    CATEGORY_CHOICES = (
+        ('gallery', 'Galerie'),
+        ('blog', 'Blog'),
+    )
+
     TYPE_CHOICES = (
         ('image', 'Image'),
         ('video', 'Video'),
@@ -10,9 +15,15 @@ class Media(models.Model):
 
     title = models.CharField(max_length=200)
 
+    category = models.CharField(
+        max_length=20,
+        choices=CATEGORY_CHOICES
+    )
+
     media_type = models.CharField(
         max_length=10,
-        choices=TYPE_CHOICES
+        choices=TYPE_CHOICES,
+        default='image'
     )
 
     image = models.ImageField(
@@ -33,7 +44,8 @@ class Media(models.Model):
     )
 
     description = models.TextField(
-        blank=True
+        blank=True,
+        null=True
     )
 
     created_at = models.DateTimeField(

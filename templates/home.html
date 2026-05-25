@@ -147,62 +147,55 @@ Accueil | Eden Agro Business
 
 </style>
 
-<!-- CAROUSEL HERO -->
+<!-- HERO -->
+ <section class="contact-header">
 
-<section class="hero-carousel">
-
-    <div id="heroCarousel"
+    <!-- CAROUSEL -->
+    <div id="carouselExampleSlidesOnly"
          class="carousel slide carousel-fade"
-         data-bs-ride="carousel"
-         data-bs-interval="4000">
+         data-bs-ride="carousel">
 
         <div class="carousel-inner">
 
             <!-- SLIDE 1 -->
-
             <div class="carousel-item active">
 
-                <img src="{% static 'images/agri1.jpg' %}"
-                     class="d-block w-100 carousel-image"
-                     alt="Agriculture">
+                <img src="{% static 'images/contact-bg.jpg' %}"
+                     class="d-block w-100"
+                     style="height: 600px; object-fit: cover;"
+                     alt="Contact">
 
-                <div class="carousel-caption">
+                <!-- TEXTE SUR IMAGE -->
+                <div class="carousel-caption d-flex flex-column justify-content-center h-100">
 
-                    <h1>
-                        Agriculture Moderne
+                    <h1 class="display-3 fw-bold text-white">
+                        Contactez-nous
                     </h1>
 
-                    <p>
-                        Production agricole durable et innovante
+                    <p class="lead text-white">
+                        Nous sommes disponibles pour répondre à toutes vos questions.
                     </p>
-
-                    <a href="/products/"
-                       class="btn btn-success btn-lg mt-3">
-
-                        Découvrir Nos Produits
-
-                    </a>
 
                 </div>
 
             </div>
 
             <!-- SLIDE 2 -->
-
             <div class="carousel-item">
 
-                <img src="{% static 'images/agri2.jpg' %}"
-                     class="d-block w-100 carousel-image"
-                     alt="Produits">
+                <img src="{% static 'images/contact-bg.jpg' %}"
+                     class="d-block w-100"
+                     style="height: 600px; object-fit: cover;"
+                     alt="Agriculture">
 
-                <div class="carousel-caption">
+                <div class="carousel-caption d-flex flex-column justify-content-center h-100">
 
-                    <h1>
-                        Produits Frais & Naturels
+                    <h1 class="display-3 fw-bold text-white">
+                        Eden Agro Business
                     </h1>
 
-                    <p>
-                        Qualité agricole professionnelle en Guinée
+                    <p class="lead text-white">
+                        Une agriculture moderne et durable en Guinée.
                     </p>
 
                 </div>
@@ -210,21 +203,21 @@ Accueil | Eden Agro Business
             </div>
 
             <!-- SLIDE 3 -->
-
             <div class="carousel-item">
 
-                <img src="{% static 'images/agri3.jpg' %}"
-                     class="d-block w-100 carousel-image"
-                     alt="Innovation">
+                <img src="{% static 'images/contact-bg.jpg' %}"
+                     class="d-block w-100"
+                     style="height: 600px; object-fit: cover;"
+                     alt="Entreprise">
 
-                <div class="carousel-caption">
+                <div class="carousel-caption d-flex flex-column justify-content-center h-100">
 
-                    <h1>
-                        Innovation Agricole
+                    <h1 class="display-3 fw-bold text-white">
+                        Nous Sommes à Votre Écoute
                     </h1>
 
-                    <p>
-                        Technologies modernes pour une meilleure production
+                    <p class="lead text-white">
+                        Contactez notre équipe pour toute collaboration.
                     </p>
 
                 </div>
@@ -237,114 +230,18 @@ Accueil | Eden Agro Business
 
 </section>
 
-<!-- STATISTIQUES -->
+    <div class="row">
 
-<section class="py-5 bg-light">
+        {% for product in products %}
 
-    <div class="container">
+        <div class="col-md-4 mb-4">
 
-        <div class="row text-center">
+            <div class="card product-card border-0 shadow">
 
-            <div class="col-md-3 mb-4">
-
-                <div class="card stats-card border-0 shadow p-4">
-
-                    <h1 class="text-success fw-bold">
-                        {{ total_clients }}+
-                    </h1>
-
-                    <h5>
-                        Clients Satisfaits
-                    </h5>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-3 mb-4">
-
-                <div class="card stats-card border-0 shadow p-4">
-
-                    <h1 class="text-success fw-bold">
-                        {{ total_products }}+
-                    </h1>
-
-                    <h5>
-                        Produits Agricoles
-                    </h5>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-3 mb-4">
-
-                <div class="card stats-card border-0 shadow p-4">
-
-                    <h1 class="text-success fw-bold">
-                        {{ total_partenaires }}+
-                    </h1>
-
-                    <h5>
-                        Partenaires
-                    </h5>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-3 mb-4">
-
-                <div class="card stats-card border-0 shadow p-4">
-
-                    <h1 class="text-success fw-bold">
-                        {{ total_experience }}+
-                    </h1>
-
-                    <h5>
-                        Années d'Expérience
-                    </h5>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- PRODUITS -->
-
-<section class="py-5">
-
-    <div class="container">
-
-        <div class="text-center mb-5">
-
-            <h2 class="fw-bold text-success">
-                Produits Vedettes
-            </h2>
-
-            <p class="text-muted">
-                Découvrez nos meilleurs produits agricoles
-            </p>
-
-        </div>
-
-        <div class="row">
-
-            {% for product in products %}
-
-            <div class="col-md-4 mb-4">
-
-                <div class="card product-card border-0 shadow">
-
-                    <img src="{{ product.image.url }}"
-                         class="card-img-top"
-                         height="280"
-                         alt="{{ product.name }}">
+                <img src="{{ product.image.url }}"
+                    class="card-img-top"
+                    height="280"
+                    alt="{{ product.name }}">
 
                     <div class="card-body">
 
@@ -355,19 +252,14 @@ Accueil | Eden Agro Business
                         <p class="text-muted">
                             {{ product.description|truncatewords:18 }}
                         </p>
-
                     </div>
-
-                </div>
-
             </div>
-
-            {% endfor %}
 
         </div>
 
-    </div>
+        {% endfor %}
 
+    </div>
 </section>
 
 <!-- DERNIERES PUBLICATIONS -->
@@ -388,41 +280,39 @@ Accueil | Eden Agro Business
 
             {% for item in media %}
 
-            <div class="col-md-4 mb-4">
+            <div class="col-md-4 mb-5 text-center">
 
-                <div class="card media-card border-0 shadow">
-
-                    {% if item.image %}
+                <!-- IMAGE -->
+                {% if item.image %}
 
                     <img src="{{ item.image.url }}"
-                         class="card-img-top"
-                         height="280">
+                        class="img-fluid mb-3"
+                        style="max-height: 180px; width: auto; max-width: 100%; border-radius: 10px;"
+                        alt="{{ item.title }}">
 
-                    {% endif %}
+                {% endif %}
 
-                    {% if item.video %}
+               <!-- VIDEO -->
+                {% if item.video %}
 
-                    <video controls class="w-100">
+                    <video controls
+                        class="w-100"
+                        style="height: 280px; object-fit: contain; background: #000;">
 
                         <source src="{{ item.video.url }}">
 
                     </video>
 
-                    {% endif %}
+                {% endif %}
+                
+                <!-- TEXTE EN BAS -->
+                <h5 class="fw-bold text-success mt-3">
+                    {{ item.title }}
+                </h5>
 
-                    <div class="card-body">
-
-                        <h5 class="fw-bold">
-                            {{ item.title }}
-                        </h5>
-
-                        <p class="text-muted">
-                            {{ item.description|truncatewords:15 }}
-                        </p>
-
-                    </div>
-
-                </div>
+                <p class="text-muted fs-5">
+                    {{ item.description|truncatewords:18 }}
+                </p>
 
             </div>
 
@@ -433,75 +323,101 @@ Accueil | Eden Agro Business
     </div>
 
 </section>
-
 <!-- TEMOIGNAGES -->
 
-<section class="py-5">
+<section class="py-5 bg-light">
 
     <div class="container">
 
         <div class="text-center mb-5">
 
-            <h2 class="fw-bold text-success">
+            <h2 class="fw-bold text-success display-5">
                 Témoignages Clients
             </h2>
 
+            <p class="text-muted fs-5">
+                Découvrez les avis de nos clients et partenaires
+            </p>
+
         </div>
 
-        <div id="testimonialCarousel"
-             class="carousel slide"
-             data-bs-ride="carousel">
+        <div class="row">
 
-            <div class="carousel-inner">
+            {% for t in testimonials %}
 
-                {% for t in testimonials %}
+            <div class="col-lg-4 col-md-6 mb-5">
 
-                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <div class="card media-card border-0 shadow">
 
-                    <div class="card testimonial-box border-0 shadow p-4 text-center">
+                    <!-- IMAGE -->
+                    {% if t.image %}
 
-                        <!-- IMAGE RECTANGLE -->
-                        {% if t.image %}
-                            <img src="{{ t.image.url }}"
-                                class="img-fluid mb-3 shadow"
-                                style="width: auto; height: auto; object-fit: cover;">
-                        {% else %}
-                            <img src="{% static 'images/default-user.png' %}"
-                                class="img-fluid mb-3 shadow"
-                                style="width: auto; height: auto; object-fit: cover;">
-                        {% endif %}
+                        <img src="{{ t.image.url }}"
+                             class="card-img-top"
+                             style="height: 280px; object-fit: cover;"
+                             alt="{{ t.name }}">
 
-                        <!-- TEXTE EN HAUT -->
-                        <div class="mb-3">
-                            <h5 class="text-dark">
-                                “{{ t.message }}”
-                            </h5>
-                        </div>
+                    {% endif %}
 
-                        <!-- TEXTE EN BAS -->
-                        <div class="mt-4">
-                            <p class="fw-bold text-success mb-0">
-                                {{ t.name }}
-                            </p>
+                    <!-- VIDEO -->
+                    {% if t.video %}
+
+                        <video controls
+                               class="w-100"
+                               style="height: 280px; object-fit: cover;">
+
+                            <source src="{{ t.video.url }}">
+
+                        </video>
+
+                    {% endif %}
+
+                    <div class="card-body p-4">
+
+                        <h4 class="fw-bold text-success mb-2">
+                            {{ t.name }}
+                        </h4>
+
+                        <h6 class="text-muted mb-4">
+                            {{ t.profession }}
+                        </h6>
+
+                        <p class="text-muted fs-5 lh-lg">
+
+                            "{{ t.message }}"
+
+                        </p>
+
+                        <!-- ETOILES -->
+                        <div class="mt-4 text-warning fs-4">
+
+                            {% for i in "12345" %}
+
+                                {% if forloop.counter <= t.rating %}
+                                    ⭐
+                                {% endif %}
+
+                            {% endfor %}
+
                         </div>
 
                     </div>
 
                 </div>
-
-                {% empty %}
-
-                <div class="carousel-item active">
-
-                    <div class="text-center p-5">
-                        <p>Aucun témoignage disponible.</p>
-                    </div>
-
-                </div>
-
-                {% endfor %}
 
             </div>
+
+            {% empty %}
+
+            <div class="text-center">
+
+                <p class="fs-4 text-muted">
+                    Aucun témoignage disponible.
+                </p>
+
+            </div>
+
+            {% endfor %}
 
         </div>
 

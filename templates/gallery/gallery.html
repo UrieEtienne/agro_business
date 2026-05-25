@@ -1,11 +1,72 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Galerie{% endblock %}
+{% block title %}
+Galerie
+{% endblock %}
 
 {% block content %}
 
-<h1>Notre Galerie</h1>
+<section class="container py-5">
 
-<p>Bienvenue dans la galerie de photos agricoles.</p>
+    <div class="text-center mb-5">
+
+        <h1 class="fw-bold text-success">
+            Notre Galerie
+        </h1>
+
+        <p class="text-muted fs-5">
+            Découvrez nos activités agricoles en images et vidéos.
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        {% for item in medias %}
+
+        <div class="col-md-4">
+
+            <!-- IMAGE SANS CADRE -->
+            {% if item.image %}
+
+                <img src="{{ item.image.url }}"
+                     class="img-fluid"
+                     style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px;"
+                     alt="{{ item.title }}">
+
+                <p class="mt-2 text-center fw-semibold text-success">
+                    {{ item.title }}
+                </p>
+
+            {% endif %}
+
+            <!-- VIDEO SANS CADRE -->
+            {% if item.video %}
+
+                <video controls class="w-100 mt-2"
+                       style="border-radius: 8px;">
+                    <source src="{{ item.video.url }}">
+                </video>
+
+                <p class="mt-2 text-center fw-semibold text-success">
+                    {{ item.title }}
+                </p>
+
+            {% endif %}
+
+        </div>
+
+        {% empty %}
+
+        <div class="text-center">
+            <p>Aucune publication disponible.</p>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
 
 {% endblock %}
