@@ -47,18 +47,23 @@
 <body>
 
     <!-- NAVBAR -->
-    {% include 'partials/navbar.html' %}
+
+    <header class="main-navbar">
+
+        {% include 'partials/navbar.html' %}
+
+    </header>
 
     <!-- CONTENU -->
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
 
+    {% block content %}
+    {% endblock %}
     <!-- FOOTER -->
+
     {% include 'partials/footer.html' %}
 
-    <!-- WhatsApp Flottant -->
+    <!-- WHATSAPP -->
+     
     <a href="https://wa.me/224625481649"
         class="whatsapp-btn"
         target="_blank">

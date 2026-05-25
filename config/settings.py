@@ -12,39 +12,100 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 # PERSONNALISER LE DASHBOARD
+
 JAZZMIN_SETTINGS = {
 
-    "site_title": "Agrico Dashboard",
+    # TITRE FENÊTRE
+    "site_title": "Dashboard Eden Agro",
 
-    "site_header": "AGRICO BUSINESS",
+    # TITRE HEADER
+    "site_header": "Eden Agro Business",
 
-    "site_brand": "AGRICO BUSINESS",
+    # LOGO
+    "site_logo": "images/logo.png",
 
-    "welcome_sign": "Bienvenue dans le Dashboard",
+    # LOGIN
+    "login_logo": "images/logo.png",
 
-    "copyright": "Agrico Business",
+    # NOM
+    "site_brand": "Eden Agro",
 
-    "show_sidebar": True,
+    # BIENVENUE
+    "welcome_sign": "Bienvenue dans Eden Agro Business",
 
-    "navigation_expanded": True,
+    # COPYRIGHT
+    "copyright": "Eden Agro Business",
 
+    # RECHERCHE
+    "search_model": [
+        "blog.Post",
+        "products.Product",
+        "gallery.Media",
+    ],
+     # =========================
+    # MENU TOP
+    # =========================
+
+    "topmenu_links": [
+
+        # HOME SITE PUBLIC
+        {
+            "name": "Accueil",
+            "url": "/",
+            "new_window": False,
+        },
+
+    ],
+
+    "custom_css": "css/admin.css",
+
+
+
+    # ICÔNES
     "icons": {
 
         "auth": "fas fa-users-cog",
 
         "auth.user": "fas fa-user",
 
-        "gallery.Media": "fas fa-image",
-
-        "products.Product": "fas fa-seedling",
+        "auth.Group": "fas fa-users",
 
         "blog.Post": "fas fa-newspaper",
 
+        "products.Product": "fas fa-seedling",
+
+        "gallery.Media": "fas fa-image",
+
         "contact.Contact": "fas fa-envelope",
+
+        "about.About": "fas fa-building",
     },
+
+    # MENU LATÉRAL
+    "navigation_expanded": True,
+
+    # MASQUER HISTORIQUE
+    "hide_apps": [],
+
+    # ORDRE
+    "order_with_respect_to": [
+        "blog",
+        "products",
+        "gallery",
+        "contact",
+        "about",
+    ],
+
+    # UI MODERNE
+    "show_sidebar": True,
+
+    "custom_css": "css/admin.css",
 }
+
 # APPLICATIONS
 INSTALLED_APPS = [
+    'admin_interface',
+    'colorfield',
 
     # Django Apps
     'jazzmin',
@@ -62,6 +123,8 @@ INSTALLED_APPS = [
     'gallery',
     'blog',
     'contact',
+    'testimonials',
+
 
 ]
 

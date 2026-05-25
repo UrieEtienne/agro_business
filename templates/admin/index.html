@@ -1,0 +1,874 @@
+{% extends "admin/index.html" %}
+{% load static %}
+
+{% block content %}
+
+<style>
+
+/* =========================
+   NAVBAR TOP
+========================= */
+
+.main-header.navbar{
+
+    background: linear-gradient(
+        90deg,
+        #03522d,
+        #04552f
+    ) !important;
+
+    border: none !important;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+/* =========================
+   NAVBAR LINKS
+========================= */
+
+.navbar-nav .nav-link{
+
+    color: white !important;
+
+    transition: 0.3s;
+}
+
+.navbar-nav .nav-link:hover{
+
+    color: #d1ffe8 !important;
+}
+
+/* =========================================
+   SIDEBAR PRINCIPAL
+========================================= */
+
+.main-sidebar{
+
+    background: linear-gradient(
+        180deg,
+        #14532d,
+        #198754
+    ) !important;
+
+    width: 300px !important;
+
+    box-shadow: 5px 0 20px rgba(0,0,0,0.15);
+}
+
+/* =========================================
+   LOGO / BRAND TOP
+========================================= */
+
+.brand-link{
+
+    background: rgba(255,255,255,0.08) !important;
+
+    padding: 25px 20px !important;
+
+    min-height: 100px !important;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* =========================================
+   TEXTE LOGO
+========================================= */
+
+.brand-text{
+
+    color: white !important;
+
+    font-size: 28px !important;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    text-align: center;
+}
+
+/* =========================================
+   CONTENEUR SIDEBAR
+========================================= */
+
+.sidebar{
+
+    padding-top: 25px;
+}
+
+/* =========================================
+   IMAGE UTILISATEUR
+========================================= */
+
+.user-panel{
+
+    padding-bottom: 20px;
+
+    margin-bottom: 20px;
+
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* =========================================
+   NOM UTILISATEUR
+========================================= */
+
+.user-panel .info a{
+
+    color: white !important;
+
+    font-size: 18px;
+
+    font-weight: bold;
+}
+
+/* =========================================
+   TITRES SECTIONS MENU
+========================================= */
+
+.nav-header{
+
+    color: #d1fae5 !important;
+
+    font-size: 13px !important;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    margin-top: 25px !important;
+
+    margin-bottom: 10px !important;
+
+    padding-left: 20px !important;
+}
+
+/* =========================================
+   LIENS MENU
+========================================= */
+
+.sidebar .nav-link{
+
+    color: white !important;
+
+    margin: 10px 15px;
+
+    padding: 16px 18px !important;
+
+    border-radius: 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    font-size: 17px !important;
+
+    font-weight: 500;
+
+    transition: 0.3s ease;
+}
+
+/* =========================================
+   HOVER MENU
+========================================= */
+
+.sidebar .nav-link:hover{
+
+    background: rgba(255,255,255,0.15) !important;
+
+    color: white !important;
+
+    transform: translateX(6px);
+}
+
+/* =========================================
+   MENU ACTIF
+========================================= */
+
+.sidebar .nav-link.active{
+
+    background: white !important;
+
+    color: #198754 !important;
+
+    font-weight: bold;
+}
+
+/* =========================================
+   ICONES MENU
+========================================= */
+
+.sidebar .nav-icon{
+
+    font-size: 22px !important;
+
+    color: #d1fae5 !important;
+}
+
+/* =========================================
+   ICONE ACTIVE
+========================================= */
+
+.sidebar .nav-link.active .nav-icon{
+
+    color: #198754 !important;
+}
+
+/* =========================================
+   SOUS MENUS
+========================================= */
+
+.nav-treeview .nav-link{
+
+    background: rgba(255,255,255,0.05);
+
+    margin-left: 15px;
+
+    font-size: 15px !important;
+}
+
+/* =========================================
+   PAGE LOGIN
+========================================= */
+
+.login-page{
+
+    background: linear-gradient(
+        135deg,
+        #198754,
+        #14532d
+    ) !important;
+}
+
+/* =========================================
+   CARD LOGIN
+========================================= */
+
+.login-box .card{
+
+    border-radius: 25px !important;
+
+    overflow: hidden;
+
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+}
+
+/* =========================================
+   LOGO LOGIN
+========================================= */
+
+.login-logo{
+
+    margin-bottom: 30px !important;
+}
+
+.login-logo a{
+
+    font-size: 42px !important;
+
+    color: white !important;
+
+    font-weight: bold;
+
+    text-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* =========================================
+   INPUT LOGIN
+========================================= */
+
+.login-card-body input{
+
+    height: 55px !important;
+
+    border-radius: 14px !important;
+
+    font-size: 16px;
+}
+
+/* =========================================
+   BOUTON LOGIN
+========================================= */
+
+.login-card-body .btn{
+
+    height: 55px;
+
+    font-size: 18px;
+
+    border-radius: 14px !important;
+
+    background: #198754 !important;
+
+    border: none !important;
+
+    font-weight: bold;
+}
+
+/* =========================================
+   HOVER LOGIN
+========================================= */
+
+.login-card-body .btn:hover{
+
+    background: #157347 !important;
+}
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.content-wrapper{
+
+    background: #f4fdf7 !important;
+}
+
+/* =========================================
+   CORRECTION CONTENU
+========================================= */
+
+.content-wrapper,
+.main-footer,
+.main-header{
+
+    margin-left: 300px !important;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.card{
+
+    border-radius: 20px !important;
+
+    border: none !important;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn-primary{
+
+    background: #198754 !important;
+
+    border: none !important;
+
+    border-radius: 10px !important;
+}
+
+.btn-primary:hover{
+
+    background: #157347 !important;
+}
+
+/* =========================
+   DASHBOARD TITLE
+========================= */
+
+.dashboard-title{
+
+    margin: 20px 0 40px;
+
+    text-align: center;
+}
+
+.dashboard-title h1{
+
+    color: #198754;
+
+    font-size: 40px;
+
+    font-weight: bold;
+}
+
+.dashboard-title p{
+
+    color: #666;
+
+    font-size: 18px;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.dashboard-container{
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+    gap: 25px;
+
+    margin-top: 20px;
+}
+
+/* =========================
+   CARD BOX
+========================= */
+
+.card-box{
+
+    background: white;
+
+    padding: 35px 25px;
+
+    border-radius: 20px;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+
+    transition: 0.4s;
+
+    position: relative;
+
+    overflow: hidden;
+
+    text-align: center;
+}
+
+.card-box:hover{
+
+    transform: translateY(-8px);
+
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+/* =========================
+   TOP BAR
+========================= */
+
+.card-box::before{
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 6px;
+
+    background: #046d3c;
+}
+
+/* =========================
+   ICON
+========================= */
+
+.card-icon{
+
+    width: 80px;
+    height: 80px;
+
+    margin: auto auto 20px;
+
+    border-radius: 50%;
+
+    background: rgb(3, 87, 47);
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    font-size: 35px;
+
+    color: #198754;
+}
+
+/* =========================
+   TITRE
+========================= */
+
+.card-box h2{
+
+    color: #198754;
+
+    font-size: 28px;
+
+    margin-bottom: 15px;
+
+    font-weight: bold;
+}
+
+/* =========================
+   TEXTE
+========================= */
+
+.card-box p{
+
+    color: #080505;
+
+    line-height: 1.8;
+
+    font-size: 15px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+    .dashboard-title h1{
+
+        font-size: 30px;
+    }
+
+    .dashboard-title p{
+
+        font-size: 16px;
+    }
+
+    .main-sidebar{
+
+        width: 100% !important;
+    }
+
+    .content-wrapper,
+    .main-footer,
+    .main-header{
+
+        margin-left: 0 !important;
+    }
+
+}
+/* =========================================
+   COULEUR DES LIENS SIDEBAR
+========================================= */
+
+.sidebar .nav-link p,
+.sidebar .nav-link span,
+.sidebar .nav-link{
+
+    color: white !important;
+}
+
+/* =========================================
+   HOVER LIENS
+========================================= */
+
+.sidebar .nav-link:hover p,
+.sidebar .nav-link:hover span{
+
+    color: white !important;
+}
+
+/* =========================================
+   MENU ACTIF
+========================================= */
+
+.sidebar .nav-link.active p,
+.sidebar .nav-link.active span{
+
+    color: #198754 !important;
+}
+
+/* =========================================
+   SOUS MENUS
+========================================= */
+
+.nav-treeview .nav-link p,
+.nav-treeview .nav-link span{
+
+    color: #d1fae5 !important;
+}
+
+/* =========================================
+   MASQUER "TABLEAU DE BORD"
+========================================= */
+
+/* cache le menu Dashboard */
+
+.nav-sidebar > .nav-item:first-child{
+
+    display: none !important;
+}
+
+/* =========================================
+   TITRES APPLICATIONS
+========================================= */
+
+.nav-header{
+
+    color: #ffffff !important;
+
+    font-weight: bold;
+
+    opacity: 0.9;
+}
+
+/* =========================================
+   ICÔNES VISIBLES
+========================================= */
+
+.sidebar .nav-icon{
+
+    color: white !important;
+}
+/* =========================================
+   SUPPRIMER TABLEAU DE BORD
+========================================= */
+
+/* Dashboard principal */
+
+.nav-sidebar .nav-item > a[href="/admin/"]{
+
+    display: none !important;
+}
+
+/* version alternative */
+
+.nav-sidebar .nav-item:first-child{
+
+    display: none !important;
+}
+
+/* =========================================
+   CORRECTION COULEUR SIDEBAR
+========================================= */
+
+/* texte menu */
+
+.sidebar .nav-link p{
+
+    color: #ffffff !important;
+
+    font-size: 16px !important;
+
+    font-weight: 500;
+}
+
+/* icônes */
+
+.sidebar .nav-icon{
+
+    color: #ffffff !important;
+}
+
+/* hover */
+
+.sidebar .nav-link:hover p{
+
+    color: #ffffff !important;
+}
+
+/* menu actif */
+
+.sidebar .nav-link.active p{
+
+    color: #198754 !important;
+
+    font-weight: bold;
+}
+
+/* sous menus */
+
+.nav-treeview .nav-link p{
+
+    color: #d1fae5 !important;
+}
+
+/* TITRES BLOG / PRODUCTS / ETC */
+
+.nav-header{
+
+    color: #ffffff !important;
+
+    font-size: 12px !important;
+
+    font-weight: bold;
+}
+
+/* =========================================
+   AGRANDIR LES ICÔNES SIDEBAR
+========================================= */
+
+.sidebar .nav-icon{
+
+    font-size: 30px !important;
+
+    width: 40px !important;
+
+    text-align: center;
+
+    margin-right: 12px;
+
+    color: #ffffff !important;
+}
+
+/* =========================================
+   TEXTE MENU PLUS VISIBLE
+========================================= */
+
+.sidebar .nav-link p{
+
+    font-size: 20px !important;
+
+    font-weight: 600;
+
+    color: white !important;
+}
+
+/* =========================================
+   LOGO EDEN AGRO
+========================================= */
+
+.brand-link{
+
+    height: 90px !important;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 20px;
+}
+
+/* IMAGE LOGO */
+
+.brand-link img{
+
+    max-height: 80px !important;
+
+    width: auto !important;
+}
+
+/* TEXTE LOGO */
+
+.brand-text{
+
+    font-size: 30px !important;
+
+    font-weight: bold;
+
+    color: white !important;
+}
+
+/* =========================================
+   USERNAME
+========================================= */
+
+.user-panel .info a{
+
+    font-size: 20px !important;
+
+    font-weight: bold;
+
+    color: white !important;
+}
+</style>
+
+<!-- TITRE -->
+
+<div class="dashboard-title">
+
+    <h1>
+        Tableau de Bord Eden Agro Business
+    </h1>
+
+    <p>
+        Gestion complète des produits, publications,
+        médias et activités agricoles.
+    </p>
+
+</div>
+
+<!-- CARDS -->
+
+<div class="dashboard-container">
+
+    <!-- PRODUITS -->
+
+    <div class="card-box">
+
+        <div class="card-icon">
+            🌱
+        </div>
+
+        <h2>
+            Produits
+        </h2>
+
+        <p>
+            Gestion des produits agricoles,
+            disponibilité et publications.
+        </p>
+
+    </div>
+
+    <!-- BLOG -->
+
+    <div class="card-box">
+
+        <div class="card-icon">
+            📰
+        </div>
+
+        <h2>
+            Blog
+        </h2>
+
+        <p>
+            Gestion des actualités,
+            articles et informations agricoles.
+        </p>
+
+    </div>
+
+    <!-- CONTACT -->
+
+    <div class="card-box">
+
+        <div class="card-icon">
+            📩
+        </div>
+
+        <h2>
+            Contact
+        </h2>
+
+        <p>
+            Consultation des messages
+            envoyés par les clients.
+        </p>
+
+    </div>
+
+    <!-- GALERIE -->
+
+    <div class="card-box">
+
+        <div class="card-icon">
+            🎥
+        </div>
+
+        <h2>
+            Galerie
+        </h2>
+
+        <p>
+            Gestion des images,
+            vidéos et médias agricoles.
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}

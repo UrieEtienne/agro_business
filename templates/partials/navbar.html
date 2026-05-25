@@ -3,10 +3,19 @@
     <div class="container">
 
         <!-- LOGO -->
-        <a class="navbar-brand fw-bold" href="/">
-            <img src="{% static 'images/logo.png' %}" width="200" alt="logo">
-            Eden Agro Business
+        <a class="navbar-brand fw-bold d-flex align-items-center me-auto" href="/">
+
+            <img src="{% static 'images/logo.png' %}"
+                width="230"
+                class="me-1"
+                alt="logo">
+
+            <span class="text-start" style="font-size: 2rem;">
+                Eden Agro Business
+            </span>
+
         </a>
+
 
         <!-- MENU MOBILE -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -22,34 +31,56 @@
             <ul class="navbar-nav ms-auto align-items-lg-center">
 
                 <li class="nav-item">
-                    <a class="nav-link active" href="/">Accueil</a>
+                    <a class="nav-link active px-3"
+                    style="font-size: 1.2rem; font-weight: 600;"
+                    href="/">
+                    Accueil
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/about/">À Propos</a>
+                    <a class="nav-link px-3"
+                    style="font-size: 1.2rem; font-weight: 600;"
+                    href="/about/">
+                    À Propos
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/products/">Produits</a>
+                    <a class="nav-link px-3"
+                    style="font-size: 1.2rem; font-weight: 600;"
+                    href="/products/">
+                    Produits
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/gallery/">Galerie</a>
+                    <a class="nav-link px-3"
+                    style="font-size: 1.2rem; font-weight: 600;"
+                    href="/gallery/">
+                    Galerie
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/blog/">Blog</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="/contact/">Contact</a>
+                    <a class="nav-link px-3"
+                    style="font-size: 1.2rem; font-weight: 600;"
+                    href="/blog/">
+                    Blog
+                    </a>
                 </li>
 
                 <!-- BOUTON -->
-                <li class="nav-item ms-lg-3">
-                    <a href="/contact/" class="btn btn-light text-success fw-bold">
+                <li class="nav-item ms-lg-4">
+
+                    <a href="/contact/"
+                    class="btn btn-light text-success fw-bold px-4 py-2"
+                    style="font-size: 1.1rem; border-radius: 10px;">
+
                         Nous Contacter
+
                     </a>
+
                 </li>
 
             </ul>
