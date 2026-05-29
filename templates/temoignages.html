@@ -1,0 +1,268 @@
+{% extends "base.html" %}
+
+{% block title %}
+Témoignages
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+/* SECTION */
+
+.testimonials-section{
+
+    background: #f5f7f6;
+
+    padding: 100px 0;
+}
+
+/* CARD */
+
+.testimonial-card{
+
+    background: white;
+
+    border-radius: 30px;
+
+    overflow: hidden;
+
+    transition: 0.4s;
+
+    height: 100%;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.testimonial-card:hover{
+
+    transform: translateY(-10px);
+}
+
+/* IMAGE */
+
+.testimonial-image{
+
+    width: 100%;
+
+    height: 320px;
+
+    object-fit: cover;
+}
+
+/* CONTENT */
+
+.testimonial-content{
+
+    padding: 35px;
+}
+
+/* NOM */
+
+.testimonial-name{
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+    margin-bottom: 5px;
+}
+
+/* PROFESSION */
+
+.testimonial-profession{
+
+    color: #198754;
+
+    font-weight: 600;
+
+    margin-bottom: 20px;
+}
+
+/* MESSAGE */
+
+.testimonial-message{
+
+    color: #555;
+
+    font-size: 17px;
+
+    line-height: 1.9;
+}
+
+/* ETOILES */
+
+.stars{
+
+    color: #ffc107;
+
+    font-size: 24px;
+
+    margin-top: 20px;
+}
+
+/* VIDEO */
+
+.testimonial-video{
+
+    width: 100%;
+
+    height: 300px;
+
+    object-fit: cover;
+}
+
+/* TITRE */
+
+.section-title{
+
+    font-size: 55px;
+
+    font-weight: bold;
+
+    color: #198754;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    .section-title{
+
+        font-size: 38px;
+    }
+
+    .testimonial-image{
+
+        height: 250px;
+    }
+
+}
+
+</style>
+
+<section class="testimonials-section">
+
+    <div class="container">
+
+        <!-- TITRE -->
+
+        <div class="text-center mb-5">
+
+            <h1 class="section-title">
+                Témoignages Clients
+            </h1>
+
+            <p class="text-muted fs-5 mt-3">
+
+                Découvrez les expériences de nos clients satisfaits.
+
+            </p>
+
+        </div>
+
+        <div class="row g-5">
+
+            {% for testimonial in testimonials %}
+
+            <div class="col-lg-6">
+
+                <div class="testimonial-card">
+
+                    <!-- IMAGE -->
+
+                    {% if testimonial.image %}
+
+                    <img src="{{ testimonial.image.url }}"
+                         class="testimonial-image"
+                         alt="{{ testimonial.name }}">
+
+                    {% endif %}
+
+                    <!-- VIDEO -->
+
+                    {% if testimonial.media_type == 'video' %}
+
+                        {% if testimonial.video %}
+
+                        <video controls class="testimonial-video">
+
+                            <source src="{{ testimonial.video.url }}">
+
+                        </video>
+
+                        {% endif %}
+
+                    {% endif %}
+
+                    <!-- CONTENT -->
+
+                    <div class="testimonial-content">
+
+                        <!-- NOM -->
+
+                        <h3 class="testimonial-name">
+
+                            {{ testimonial.name }}
+
+                        </h3>
+
+                        <!-- PROFESSION -->
+
+                        <div class="testimonial-profession">
+
+                            {{ testimonial.profession }}
+
+                        </div>
+
+                        <!-- MESSAGE -->
+
+                        <p class="testimonial-message">
+
+                            “{{ testimonial.message }}”
+
+                        </p>
+
+                        <!-- STARS -->
+
+                        <div class="stars">
+
+                            {% for i in "12345" %}
+
+                                {% if forloop.counter <= testimonial.rating %}
+                                    ★
+                                {% else %}
+                                    ☆
+                                {% endif %}
+
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <div class="col-12 text-center">
+
+                <h3 class="text-muted">
+
+                    Aucun témoignage disponible.
+
+                </h3>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

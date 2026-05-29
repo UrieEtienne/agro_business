@@ -1,0 +1,272 @@
+/* ===================================
+   GLOBAL
+=================================== */
+
+body {
+    font-family: "Segoe UI", sans-serif;
+    background: #f5f7fb !important;
+}
+
+/* ===================================
+   TOP NAVBAR
+=================================== */
+
+.main-header.navbar {
+    background: linear-gradient(90deg, #4e73df, #224abe) !important;
+    border: none !important;
+}
+
+/* ===================================
+   SIDEBAR
+=================================== */
+
+.main-sidebar {
+    background: #ffffff !important;
+    box-shadow: 3px 0 20px rgba(0,0,0,0.08);
+}
+
+/* ===================================
+   BRAND
+=================================== */
+
+.brand-link {
+    background: #4e73df !important;
+    color: white !important;
+}
+
+.brand-text {
+    color: white !important;
+    font-weight: bold;
+}
+
+/* ===================================
+   MENU
+=================================== */
+
+.sidebar .nav-link {
+    border-radius: 10px;
+    margin: 5px 10px;
+    transition: 0.3s;
+}
+
+.sidebar .nav-link:hover {
+    background: #4e73df !important;
+    color: white !important;
+}
+
+.sidebar .nav-link.active {
+    background: #4e73df !important;
+    color: white !important;
+}
+
+/* ===================================
+   CONTENT
+=================================== */
+
+.content-wrapper {
+    background: #f5f7fb !important;
+}
+
+/* ===================================
+   CARDS
+=================================== */
+
+.card {
+    border-radius: 15px !important;
+    border: none !important;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+}
+
+/* ===================================
+   TABLES
+=================================== */
+
+.table thead th {
+    background: #4e73df !important;
+    color: white !important;
+}
+
+/* ===================================
+   BUTTONS
+=================================== */
+
+.btn-primary {
+    background: #4e73df !important;
+    border: none !important;
+}
+
+
+/* ===================================
+   NAVBAR VERT VEGETAL
+=================================== */
+
+.main-header.navbar {
+
+    background: linear-gradient(
+        90deg,
+        #14532d,
+        #198754,
+        #20c997
+    ) !important;
+
+    border: none !important;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* ===================================
+   TEXTE NAVBAR
+=================================== */
+
+.main-header .nav-link {
+
+    color: white !important;
+
+    font-size: 15px;
+
+    transition: 0.3s;
+}
+
+/* ===================================
+   HOVER NAVBAR
+=================================== */
+
+.main-header .nav-link:hover {
+
+    color: #d1fae5 !important;
+
+    transform: translateY(-1px);
+}
+
+/* ===================================
+   LOGO / BRAND
+=================================== */
+
+.brand-link {
+
+    background: linear-gradient(
+        180deg,
+        #14532d,
+        #198754
+    ) !important;
+
+    border-bottom: none !important;
+}
+
+/* ===================================
+   TEXTE LOGO
+=================================== */
+
+.brand-text {
+
+    color: white !important;
+
+    font-size: 22px !important;
+
+    font-weight: bold;
+}
+
+/* ===================================
+   TITRE TABLEAU DE BORD
+=================================== */
+
+.content-header h1 {
+
+    color: #198754 !important;
+
+    font-weight: bold;
+
+    font-size: 30px;
+}
+
+/* ===================================
+   SIDEBAR VERTE
+=================================== */
+
+.main-sidebar {
+
+    background: linear-gradient(
+        180deg,
+        #14532d,
+        #198754
+    ) !important;
+}
+
+/* ===================================
+   MENU SIDEBAR
+=================================== */
+
+.sidebar .nav-link {
+
+    color: white !important;
+
+    border-radius: 12px;
+
+    margin: 5px 10px;
+
+    transition: 0.3s;
+}
+
+/* ===================================
+   HOVER MENU
+=================================== */
+
+.sidebar .nav-link:hover {
+
+    background: rgba(255,255,255,0.15) !important;
+}
+
+/* ===================================
+   MENU ACTIF
+=================================== */
+
+.sidebar .nav-link.active {
+
+    background: white !important;
+
+    color: #198754 !important;
+
+    font-weight: bold;
+}
+
+/* ===================================
+   ICONES
+=================================== */
+
+.sidebar .nav-icon {
+
+    color: white !important;
+
+    font-size: 18px !important;
+}
+
+/* ===================================
+   CARDS DASHBOARD
+=================================== */
+
+.card {
+
+    border-radius: 18px !important;
+
+    border: none !important;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+/* ===================================
+   BOUTONS
+=================================== */
+
+.btn-primary {
+
+    background: #198754 !important;
+
+    border: none !important;
+
+    border-radius: 10px !important;
+}
+
+.btn-primary:hover {
+
+    background: #146c43 !important;
+}

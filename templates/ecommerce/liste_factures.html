@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}
+Factures
+{% endblock %}
+
+{% block content %}
+
+<section class="container py-5">
+
+    <h1 class="text-success text-center mb-5">
+
+        Gestion des Factures
+
+    </h1>
+
+    <div class="table-responsive">
+
+        <table class="table table-bordered table-hover">
+
+            <thead class="table-success">
+
+                <tr>
+
+                    <th>#</th>
+
+                    <th>Client</th>
+
+                    <th>Produit</th>
+
+                    <th>Total</th>
+
+                    <th>Statut</th>
+
+                    <th>Date</th>
+
+                    <th>PDF</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for facture in factures %}
+
+                <tr>
+
+                    <td>
+                        {{ facture.id }}
+                    </td>
+
+                    <td>
+                        {{ facture.client_nom }}
+                    </td>
+
+                    <td>
+                        {{ facture.produit }}
+                    </td>
+
+                    <td>
+                        {{ facture.total }} GNF
+                    </td>
+
+                    <td>
+
+                        {% if facture.statut == 'payee' %}
+
+                            <span class="badge bg-success">
+                                Payée
+                            </span>
+
+                        {% elif facture.statut == 'annulee' %}
+
+                            <span class="badge bg-danger">
+                                Annulée
+                            </span>
+
+                        {% else %}
+
+                            <span class="badge bg-warning text-dark">
+                                En attente
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                    <td>
+                        {{ facture.date_creation|date:"d/m/Y" }}
+                    </td>
+
+                    <td>
+
+                        <a href="{% url 'facture_pdf' facture.id %}"
+                           class="btn btn-danger btn-sm">
+
+                            PDF
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="7"
+                        class="text-center">
+
+                        Aucune facture disponible.
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+{% endblock %}

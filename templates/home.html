@@ -9,41 +9,6 @@ Accueil | Eden Agro Business
 
 <style>
 
-/* CAROUSEL */
-
-.hero-carousel{
-
-    position: relative;
-}
-
-.carousel-image{
-
-    height: 100vh;
-
-    object-fit: cover;
-
-    filter: brightness(55%);
-}
-
-.carousel-caption{
-
-    bottom: 30%;
-
-    animation: fadeInUp 1s;
-}
-
-.carousel-caption h1{
-
-    font-size: 70px;
-
-    font-weight: bold;
-}
-
-.carousel-caption p{
-
-    font-size: 24px;
-}
-
 /* ANIMATION */
 
 @keyframes fadeInUp{
@@ -71,27 +36,6 @@ Accueil | Eden Agro Business
 .stats-card:hover{
 
     transform: translateY(-8px);
-}
-
-/* PRODUITS */
-
-.product-card{
-
-    border-radius: 20px;
-
-    overflow: hidden;
-
-    transition: 0.4s;
-}
-
-.product-card:hover{
-
-    transform: translateY(-10px);
-}
-
-.product-card img{
-
-    object-fit: cover;
 }
 
 /* PUBLICATIONS */
@@ -126,280 +70,278 @@ Accueil | Eden Agro Business
 }
 
 /* RESPONSIVE */
-
 @media(max-width:768px){
 
-    .carousel-image{
-
-        height: 80vh;
+    .hero-banner img{
+        height: 500px !important;
     }
 
-    .carousel-caption h1{
-
-        font-size: 38px;
+    h1{
+        font-size: 38px !important;
     }
 
-    .carousel-caption p{
-
-        font-size: 18px;
+    p{
+        font-size: 18px !important;
     }
 }
+/* SERVICES */
 
+.services-section{
+
+    background: linear-gradient(
+        rgba(0,0,0,0.45),
+        rgba(0,0,0,0.45)
+    ),
+    url('/static/images/service0.jpg');
+
+    background-size: cover;
+
+    background-position: center;
+
+    padding: 120px 0;
+}
+
+.service-card{
+
+    background: white;
+
+    padding: 18px;
+
+    transition: 0.4s;
+
+    height: 100%;
+}
+
+.service-card:hover{
+
+    transform: translateY(-10px);
+}
+
+.service-card img{
+
+    width: 100%;
+
+    height: 260px;
+
+    object-fit: cover;
+}
+
+.service-title{
+
+    font-size: 30px;
+
+    font-weight: bold;
+
+    color: white;
+}
+
+.service-btn{
+
+    border: 2px solid #ad0606;
+
+    color: #046107;
+
+    padding: 12px 28px;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+    transition: 0.3s;
+}
+
+.service-btn:hover{
+
+    background: #4CAF50;
+
+    color: white;
+}
+
+/* =========================
+   SECTION VERTE
+========================= */
+.discover-section {
+
+    background: linear-gradient(
+        135deg,
+        rgba(126, 148, 135, 0.68),
+        rgba(106, 136, 119, 0.72)
+    );
+
+    backdrop-filter: blur(5px);
+
+    padding-top: 80px !important;
+
+    padding-bottom: 80px !important;
+
+    margin-top: 80px;
+}
+
+/* =========================
+   TITRE
+========================= */
+
+.discover-title {
+
+    color: white;
+
+    font-size: 42px;
+
+    font-weight: bold;
+
+    margin-bottom: 35px;
+}
+
+/* =========================
+   BOUTON
+========================= */
+
+.discover-btn {
+
+    display: inline-block;
+
+    background: white;
+
+    color: #198754;
+
+    padding: 18px 35px;
+
+    border-radius: 14px;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+    transition: 0.4s ease;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* =========================
+   HOVER
+========================= */
+
+.discover-btn:hover {
+
+    background: #d1fae5;
+
+    color: #687a6f;
+
+    transform: translateY(-4px);
+}
 </style>
 
-<!-- HERO -->
- <section class="contact-header">
+<!-- HERO BANNER -->
 
-    <!-- CAROUSEL -->
-    <div id="carouselExampleSlidesOnly"
-         class="carousel slide carousel-fade"
-         data-bs-ride="carousel">
+<section class="hero-banner position-relative">
 
-        <div class="carousel-inner">
+    <!-- IMAGE -->
+    <img src="{% static 'images/accueil.jpg' %}"
+         class="w-100"
+         style="height: 700px; object-fit: cover; filter: brightness(55%);"
+         alt="Accueil">
 
-            <!-- SLIDE 1 -->
-            <div class="carousel-item active">
+    <!-- TEXTE SUR IMAGE -->
+    <div class="position-absolute top-50 start-50 translate-middle text-center text-white w-100 px-3">
 
-                <img src="{% static 'images/contact-bg.jpg' %}"
-                     class="d-block w-100"
-                     style="height: 600px; object-fit: cover;"
-                     alt="Contact">
+        <h1 class="display-2 fw-bold">
 
-                <!-- TEXTE SUR IMAGE -->
-                <div class="carousel-caption d-flex flex-column justify-content-center h-100">
+            Bienvenue chez Eden Agro Business & Service
 
-                    <h1 class="display-3 fw-bold text-white">
-                        Contactez-nous
-                    </h1>
+        </h1>
 
-                    <p class="lead text-white">
-                        Nous sommes disponibles pour répondre à toutes vos questions.
-                    </p>
+        <p class="fs-2 mt-4">
 
-                </div>
+            Une agriculture moderne, durable et innovante en Guinée.
 
-            </div>
+        </p>
 
-            <!-- SLIDE 2 -->
-            <div class="carousel-item">
+        <a href="/produits/"
+           class="btn btn-success btn-lg mt-4 px-5 py-3">
 
-                <img src="{% static 'images/contact-bg.jpg' %}"
-                     class="d-block w-100"
-                     style="height: 600px; object-fit: cover;"
-                     alt="Agriculture">
+            Découvrir Nos Produits
 
-                <div class="carousel-caption d-flex flex-column justify-content-center h-100">
-
-                    <h1 class="display-3 fw-bold text-white">
-                        Eden Agro Business
-                    </h1>
-
-                    <p class="lead text-white">
-                        Une agriculture moderne et durable en Guinée.
-                    </p>
-
-                </div>
-
-            </div>
-
-            <!-- SLIDE 3 -->
-            <div class="carousel-item">
-
-                <img src="{% static 'images/contact-bg.jpg' %}"
-                     class="d-block w-100"
-                     style="height: 600px; object-fit: cover;"
-                     alt="Entreprise">
-
-                <div class="carousel-caption d-flex flex-column justify-content-center h-100">
-
-                    <h1 class="display-3 fw-bold text-white">
-                        Nous Sommes à Votre Écoute
-                    </h1>
-
-                    <p class="lead text-white">
-                        Contactez notre équipe pour toute collaboration.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
+        </a>
 
     </div>
 
 </section>
+<!-- SECTION PRESENTATION MODERNE -->
 
-    <div class="row">
-
-        {% for product in products %}
-
-        <div class="col-md-4 mb-4">
-
-            <div class="card product-card border-0 shadow">
-
-                <img src="{{ product.image.url }}"
-                    class="card-img-top"
-                    height="280"
-                    alt="{{ product.name }}">
-
-                    <div class="card-body">
-
-                        <h4 class="fw-bold text-success">
-                            {{ product.name }}
-                        </h4>
-
-                        <p class="text-muted">
-                            {{ product.description|truncatewords:18 }}
-                        </p>
-                    </div>
-            </div>
-
-        </div>
-
-        {% endfor %}
-
-    </div>
-</section>
-
-<!-- DERNIERES PUBLICATIONS -->
-
-<section class="py-5 bg-light">
+<section class="py-5" style="background: #f5f5f5;">
 
     <div class="container">
 
-        <div class="text-center mb-5">
+        <div class="row align-items-center g-5">
 
-            <h2 class="fw-bold text-success">
-                Dernières Publications
-            </h2>
+            <!-- IMAGE -->
+            <div class="col-lg-6">
 
-        </div>
+                <img src="{% static 'images/presentation.jpg' %}"
+                     class="img-fluid w-100"
+                     style="height: 500px; object-fit: cover;"
+                     alt="Présentation">
 
-        <div class="row">
+            </div>
 
-            {% for item in media %}
+            <!-- TEXTE -->
+            <div class="col-lg-6">
 
-            <div class="col-md-4 mb-5 text-center">
+                <span class="badge bg-danger mb-3 px-4 py-2 fs-6">
 
-                <!-- IMAGE -->
-                {% if item.image %}
+                    COMMANDEZ VOS LÉGUMES CHEZ NOUS
 
-                    <img src="{{ item.image.url }}"
-                        class="img-fluid mb-3"
-                        style="max-height: 180px; width: auto; max-width: 100%; border-radius: 10px;"
-                        alt="{{ item.title }}">
+                </span>
 
-                {% endif %}
+                <h1 class="fw-bold mb-4"
+                    style="font-size: 58px; line-height: 1.2;">
 
-               <!-- VIDEO -->
-                {% if item.video %}
+                    POURQUOI CHOISIR <br>
 
-                    <video controls
-                        class="w-100"
-                        style="height: 280px; object-fit: contain; background: #000;">
+                    EDEN AGRO-BUSINESS ?
 
-                        <source src="{{ item.video.url }}">
+                </h1>
 
-                    </video>
+                <p class="text-muted"
+                   style="font-size: 24px; line-height: 1.9;">
 
-                {% endif %}
-                
-                <!-- TEXTE EN BAS -->
-                <h5 class="fw-bold text-success mt-3">
-                    {{ item.title }}
-                </h5>
+                    Chez EDEN Agro-Business, nous croyons qu’une alimentation saine
+                    commence par une terre protégée.
 
-                <p class="text-muted fs-5">
-                    {{ item.description|truncatewords:18 }}
+                    Nos méthodes de culture excluent l’usage de produits chimiques
+                    nocifs et privilégient les pratiques durables qui préservent
+                    les sols, l’eau et la biodiversité.
+
+                    Chaque fruit et chaque légume est cultivé avec soin,
+                    en harmonie avec la nature, pour offrir aux consommateurs
+                    guinéens et au-delà des produits authentiques,
+                    sains et 100% biologiques.
+
                 </p>
 
-            </div>
+                <!-- CONTACT -->
+                <div class="d-flex align-items-center mt-5">
 
-            {% endfor %}
+                    <div class="bg-success text-white rounded-circle d-flex justify-content-center align-items-center"
+                         style="width: 70px; height: 70px; font-size: 28px;">
 
-        </div>
+                        ☎
 
-    </div>
+                    </div>
 
-</section>
-<!-- TEMOIGNAGES -->
+                    <div class="ms-4">
 
-<section class="py-5 bg-light">
-
-    <div class="container">
-
-        <div class="text-center mb-5">
-
-            <h2 class="fw-bold text-success display-5">
-                Témoignages Clients
-            </h2>
-
-            <p class="text-muted fs-5">
-                Découvrez les avis de nos clients et partenaires
-            </p>
-
-        </div>
-
-        <div class="row">
-
-            {% for t in testimonials %}
-
-            <div class="col-lg-4 col-md-6 mb-5">
-
-                <div class="card media-card border-0 shadow">
-
-                    <!-- IMAGE -->
-                    {% if t.image %}
-
-                        <img src="{{ t.image.url }}"
-                             class="card-img-top"
-                             style="height: 280px; object-fit: cover;"
-                             alt="{{ t.name }}">
-
-                    {% endif %}
-
-                    <!-- VIDEO -->
-                    {% if t.video %}
-
-                        <video controls
-                               class="w-100"
-                               style="height: 280px; object-fit: cover;">
-
-                            <source src="{{ t.video.url }}">
-
-                        </video>
-
-                    {% endif %}
-
-                    <div class="card-body p-4">
-
-                        <h4 class="fw-bold text-success mb-2">
-                            {{ t.name }}
-                        </h4>
-
-                        <h6 class="text-muted mb-4">
-                            {{ t.profession }}
+                        <h6 class="text-muted mb-1">
+                            CONTACTEZ-NOUS
                         </h6>
 
-                        <p class="text-muted fs-5 lh-lg">
+                        <h3 class="fw-bold">
 
-                            "{{ t.message }}"
+                            +224 621 944 612
 
-                        </p>
-
-                        <!-- ETOILES -->
-                        <div class="mt-4 text-warning fs-4">
-
-                            {% for i in "12345" %}
-
-                                {% if forloop.counter <= t.rating %}
-                                    ⭐
-                                {% endif %}
-
-                            {% endfor %}
-
-                        </div>
+                        </h3>
 
                     </div>
 
@@ -407,22 +349,163 @@ Accueil | Eden Agro Business
 
             </div>
 
-            {% empty %}
-
-            <div class="text-center">
-
-                <p class="fs-4 text-muted">
-                    Aucun témoignage disponible.
-                </p>
-
-            </div>
-
-            {% endfor %}
-
         </div>
 
     </div>
 
 </section>
+<!-- NOS SERVICES -->
 
+<section class="services-section">
+
+    <div class="container">
+
+        <!-- TITRE -->
+        <div class="text-center mb-5">
+
+            <span class="badge bg-danger px-4 py-3 fs-6 mb-4">
+
+                CE QUE NOUS VOUS OFFRONS
+
+            </span>
+
+            <h1 class="service-title">
+
+                NOS SERVICES PHARES
+
+            </h1>
+
+        </div>
+
+        <div class="row g-4">
+
+            <!-- SERVICE 1 -->
+            <div class="col-lg-4 col-md-6">
+
+                <div class="service-card">
+
+                    <img src="{% static 'images/service2.jpg' %}"
+                         alt="Service">
+
+                    <div class="mt-4">
+
+                        <h4 class="fw-bold">
+
+                            FRUITS & LÉGUMES 100% BIO
+
+                        </h4>
+
+                        <p class="text-muted fs-5 mt-3">
+
+                            Des produits frais issus d'une agriculture locale,
+                            saine et respectueuse de l'environnement.
+
+                        </p>
+
+                        <a href="/produits/"
+                           class="service-btn d-inline-block mt-3">
+
+                            VOIR PLUS →
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- SERVICE 2 -->
+            <div class="col-lg-4 col-md-6">
+
+                <div class="service-card">
+
+                    <img src="{% static 'images/service3.jpg' %}"
+                         alt="Service">
+
+                    <div class="mt-4">
+
+                        <h4 class="fw-bold">
+
+                            PRODUCTION MODERNE SOUS SERRE
+
+                        </h4>
+
+                        <p class="text-muted fs-5 mt-3">
+
+                            Une technologie innovante pour garantir fraîcheur,
+                            qualité et disponibilité toute l’année.
+
+                        </p>
+
+                        <a href="/about/"
+                           class="service-btn d-inline-block mt-3">
+
+                            VOIR PLUS →
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- SERVICE 3 -->
+            <div class="col-lg-4 col-md-6">
+
+                <div class="service-card">
+
+                    <img src="{% static 'images/service.jpg' %}"
+                         alt="Service">
+
+                    <div class="mt-4">
+
+                        <h4 class="fw-bold">
+
+                            APPROVISIONNEMENT FIABLE
+
+                        </h4>
+
+                        <p class="text-muted fs-5 mt-3">
+
+                            Un service régulier pour hôtels,
+                            restaurants et supermarchés en Guinée.
+
+                        </p>
+
+                        <a href="/contact/"
+                           class="service-btn d-inline-block mt-3">
+
+                            VOIR PLUS →
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+<section class="discover-section text-center py-5">
+
+    <div class="container">
+
+        <h3 class="discover-title">
+            Découvrez plus
+        </h3>
+
+        <a href="{% url 'temoignages' %}"
+           class="discover-btn">
+
+            💬 Voir les Témoignages
+
+        </a>
+
+    </div>
+
+</section>
 {% endblock %}

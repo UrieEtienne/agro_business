@@ -1,25 +1,30 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg navbar-dark bg-success sticky-top shadow">
+
+<nav class="navbar navbar-expand-lg sticky-top shadow-sm custom-navbar">
+
     <div class="container">
 
-        <!-- LOGO -->
-        <a class="navbar-brand fw-bold d-flex align-items-center me-auto" href="/">
+        <!-- LOGO + NOM -->
+        <a class="navbar-brand d-flex align-items-center" href="/">
 
             <img src="{% static 'images/logo.png' %}"
-                width="230"
-                class="me-1"
-                alt="logo">
+                 alt="Logo Eden Agro"
+                 class="navbar-logo">
 
-            <span class="text-start" style="font-size: 2rem;">
-                Eden Agro Business
-            </span>
+            <div class="logo-text">
+
+                <span class="company-name">
+                    Eden Agro Business & Service
+                </span>
+            </div>
 
         </a>
 
-
         <!-- MENU MOBILE -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarNav">
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
 
             <span class="navbar-toggler-icon"></span>
 
@@ -31,51 +36,34 @@
             <ul class="navbar-nav ms-auto align-items-lg-center">
 
                 <li class="nav-item">
-                    <a class="nav-link active px-3"
-                    style="font-size: 1.2rem; font-weight: 600;"
-                    href="/">
-                    Accueil
+                    <a class="nav-link active" href="/">
+                        Accueil
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link px-3"
-                    style="font-size: 1.2rem; font-weight: 600;"
-                    href="/about/">
-                    À Propos
+                    <a class="nav-link" href="/about/">
+                        À Propos
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link px-3"
-                    style="font-size: 1.2rem; font-weight: 600;"
-                    href="/products/">
-                    Produits
+                    <a class="nav-link" href="/gallery/">
+                        Galerie
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link px-3"
-                    style="font-size: 1.2rem; font-weight: 600;"
-                    href="/gallery/">
-                    Galerie
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link px-3"
-                    style="font-size: 1.2rem; font-weight: 600;"
-                    href="/blog/">
-                    Blog
+                    <a class="nav-link" href="/blog/">
+                        Blog
                     </a>
                 </li>
 
                 <!-- BOUTON -->
-                <li class="nav-item ms-lg-4">
+                <li class="nav-item ms-lg-4 mt-3 mt-lg-0">
 
                     <a href="/contact/"
-                    class="btn btn-light text-success fw-bold px-4 py-2"
-                    style="font-size: 1.1rem; border-radius: 10px;">
+                       class="btn contact-btn">
 
                         Nous Contacter
 
@@ -88,4 +76,5 @@
         </div>
 
     </div>
+
 </nav>

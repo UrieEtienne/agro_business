@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="container py-5">
+
+    <h1 class="text-success mb-5">
+
+        Dashboard Financier
+
+    </h1>
+
+    <div class="row">
+
+        <div class="col-lg-4">
+
+            <div class="card shadow p-4">
+
+                <h5>
+
+                    Revenus Totaux
+
+                </h5>
+
+                <h2 class="text-success">
+
+                    {{ total_revenus.montant__sum }} GNF
+
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

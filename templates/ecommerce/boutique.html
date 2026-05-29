@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}
+Boutique
+{% endblock %}
+
+{% block content %}
+
+<section class="container py-5">
+
+    <div class="text-center mb-5">
+
+        <h1 class="fw-bold text-success">
+            Nos Promotions
+        </h1>
+
+    </div>
+
+    <div class="row g-4">
+
+        {% for promo in promotions %}
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="card border-0 shadow h-100">
+
+                <img src="{{ promo.image.url }}"
+                     class="card-img-top"
+                     style="height:250px; object-fit:cover;"
+                     alt="{{ promo.titre }}">
+
+                <div class="card-body">
+
+                    <h5 class="fw-bold">
+
+                        {{ promo.titre }}
+
+                    </h5>
+
+                    <p>
+
+                        {{ promo.description|truncatewords:15 }}
+
+                    </p>
+
+                    <span class="badge bg-success">
+
+                        Promo -{{ promo.reduction }}%
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="col-12 text-center">
+
+            <h4 class="text-muted">
+
+                Aucune promotion disponible.
+
+            </h4>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -2,49 +2,144 @@
 body {
     font-family: Arial, sans-serif;
 }
-
-/* NAVBAR */
-.navbar {
-    padding: 12px 0;
-    background: #ffffff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-}
-
-/* CONTAINER NAVBAR */
-.navbar .container {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+/* NAVBAR FIX */
+.custom-navbar{
+    background-color: #198754 !important;
+    width: 100%;
+    z-index: 9999;
+     padding: 1px 0;  
 }
 
 /* LOGO */
-.navbar-brand {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin-right: auto;
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: #198754 !important;
-    text-decoration: none;
-}
-
-/* IMAGE LOGO */
-.navbar-brand img {
-    width: 230px;
-    height: auto;
+.navbar-logo{
+    width: 50px;
+    height: 50px;
     object-fit: contain;
-    margin-right: 12px;
 }
 
-/* TEXTE LOGO */
-.navbar-brand span {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #198754;
-    line-height: 1.2;
+/* TEXT */
+.company-name{
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: white;
 }
 
+/* LINKS */
+.navbar-nav .nav-link{
+    color: white !important;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.navbar-nav .nav-link:hover{
+    color: #d4ffd9 !important;
+}
+
+.navbar-nav .nav-link:hover{
+
+    color: #d4ffd9 !important;
+}
+
+/* BOUTON */
+
+.contact-btn{
+
+    background: white;
+
+    color: #198754 !important;
+
+    padding: 12px 24px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+    transition: 0.3s;
+
+    border: none;
+}
+
+.contact-btn:hover{
+
+    background: #026e14;
+
+    color: #f8fcfa !important;
+}
+
+/* TOGGLER MOBILE */
+
+.navbar-toggler{
+
+    border: 2px solid white;
+}
+
+.navbar-toggler:focus{
+
+    box-shadow: none;
+}
+
+/* ICONE MENU */
+
+.navbar-toggler-icon{
+
+    filter: brightness(0) invert(1);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:992px){
+
+    .custom-navbar .container{
+
+        padding-left: 15px;
+
+        padding-right: 15px;
+    }
+
+    .navbar-logo{
+
+        width: 60px;
+
+        height: 60px;
+    }
+
+    .company-name{
+
+        font-size: 1.1rem;
+    }
+
+    .navbar-collapse{
+
+        background: #198754;
+
+        padding: 20px;
+
+        margin-top: 15px;
+
+        border-radius: 12px;
+    }
+
+    .navbar-nav{
+
+        gap: 0;
+
+        text-align: left;
+    }
+
+    .navbar-nav .nav-link{
+
+        padding: 12px 0 !important;
+    }
+
+    .contact-btn{
+
+        display: inline-block;
+
+        margin-top: 15px;
+    }
+}
 /* HERO */
 .hero {
     height: 90vh;
@@ -87,6 +182,87 @@ footer a:hover {
 .whatsapp-btn:hover {
     color: white;
     transform: scale(1.1);
+}
+/* =========================
+   FOOTER
+========================= */
+
+.footer-section{
+
+    background: #111;
+}
+
+/* NEWSLETTER INPUT */
+
+.newsletter-input{
+
+    height: 50px;
+
+    border-radius: 10px;
+
+    border: none;
+
+    padding-left: 15px;
+}
+
+.newsletter-input:focus{
+
+    box-shadow: none;
+
+    border: 2px solid #198754;
+}
+
+/* BOUTON NEWSLETTER */
+
+.newsletter-btn{
+
+    background: #198754;
+
+    color: white;
+
+    border: none;
+
+    height: 50px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.newsletter-btn:hover{
+
+    background: #146c43;
+}
+
+/* RESEAUX SOCIAUX */
+
+.social-icons a{
+
+    transition: 0.3s;
+}
+
+.social-icons a:hover{
+
+    color: #198754 !important;
+
+    transform: translateY(-5px);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    .footer-section{
+
+        text-align: center;
+    }
+
+    .newsletter-btn{
+
+        margin-top: 10px;
+    }
 }
 /* Le blog actualite */
 .blog-hero{
@@ -152,38 +328,74 @@ footer a:hover {
 
     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 
-    max-width: 800px;
+    max-width: 900px;
 
     margin: auto;
+
+    text-align: center;
 }
+
+/* IMAGE */
 
 .testimonial-image{
 
-    width: 120px;
+    width: 350px;
 
-    height: 120px;
+    height: 350px;
 
     object-fit: cover;
 
-    border-radius: 50%;
+    border-radius: 20px;
 
-    border: 5px solid #198754;
+    display: block;
+
+    margin: 0 auto 25px auto;
 }
+
+/* NOM */
+
+.testimonial-box h4{
+
+    font-size: 30px;
+
+    font-weight: bold;
+
+    color: #198754;
+
+    margin-bottom: 15px;
+}
+
+/* MESSAGE */
 
 .testimonial-box p{
 
-    font-size: 20px;
+    font-size: 22px;
 
-    line-height: 1.8;
+    line-height: 1.9;
 
     color: #555;
 }
-.card {
-    transition: 0.3s;
-}
 
-.card:hover {
-    transform: translateY(-8px);
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    .testimonial-image{
+
+        width: 100%;
+
+        height: 320px;
+    }
+
+    .testimonial-box{
+
+        padding: 30px;
+    }
+
+    .testimonial-box p{
+
+        font-size: 18px;
+    }
 }
 
 /* PRODUIT */
@@ -194,7 +406,7 @@ footer a:hover {
             rgba(0,0,0,0.6),
             rgba(0,0,0,0.6)
         ),
-        url("../images/products-bg.jpg");
+        url("../images/produits-bg.jpg");
 
     background-size: cover;
 
@@ -223,7 +435,7 @@ footer a:hover {
 
 /* SECTION PRODUITS */
 
-.products-section{
+.produits-section{
 
     padding: 100px 0;
 
@@ -232,14 +444,14 @@ footer a:hover {
 
 /* PRODUIT */
 
-.product-box{
+.produit-box{
 
     margin-bottom: 40px;
 }
 
 /* IMAGE */
 
-.product-image{
+.produit-image{
 
     width: 100%;
 
@@ -254,21 +466,21 @@ footer a:hover {
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-.product-image:hover{
+.produit-image:hover{
 
     transform: scale(1.03);
 }
 
 /* TEXTE */
 
-.product-content{
+.produit-content{
 
     margin-top: 25px;
 
     padding: 0 15px;
 }
 
-.product-content h2{
+.produit-content h2{
 
     color: #198754;
 
@@ -279,7 +491,7 @@ footer a:hover {
     margin-bottom: 20px;
 }
 
-.product-content p{
+.produit-content p{
 
     color: #555;
 
@@ -302,15 +514,16 @@ footer a:hover {
         font-size: 18px;
     }
 
-    .product-image{
+    .produit-image{
 
         height: 280px;
     }
 
-    .product-content h2{
+    .produit-content h2{
 
         font-size: 28px;
     }
 
 }
+
 

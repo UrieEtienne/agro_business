@@ -1,38 +1,39 @@
-<footer class="bg-dark text-light pt-5 pb-3 mt-5">
+<footer class="bg-dark text-light pt-5 pb-3 mt-5 footer-section">
 
     <div class="container">
 
         <div class="row">
 
             <!-- ENTREPRISE -->
-            <div class="col-lg-4 mb-4">
+            <div class="col-lg-3 col-md-6 mb-4">
 
                 <h4 class="fw-bold text-success">
                     Eden Agro Business
                 </h4>
 
                 <p>
-                    Entreprise agricole spécialisée dans la production
+                    Entreprise agricole spécialisée dans la produition
                     et la distribution de produits agricoles de qualité.
                 </p>
 
             </div>
 
-            <!-- SLOGAN DE L'ENTREPRISE -->
-            <div class="col-lg-4 mb-4">
+            <!-- SLOGAN -->
+            <div class="col-lg-3 col-md-6 mb-4">
 
                 <h4 class="fw-bold text-success">
-                    Notre Slogan c'est
+                    Notre Slogan
                 </h4>
 
                 <p>
-                    Faites confiance a la nature. Faites confiance a Eden Agro Business.
+                    Faites confiance à la nature.
+                    Faites confiance à Eden Agro Business.
                 </p>
 
             </div>
 
             <!-- CONTACT -->
-            <div class="col-lg-4 mb-4">
+            <div class="col-lg-3 col-md-6 mb-4">
 
                 <h5 class="fw-bold mb-3">
                     Nous Contacter
@@ -60,9 +61,47 @@
 
             </div>
 
+            <!-- NEWSLETTER -->
+            <div class="col-lg-3 col-md-6 mb-4">
+
+                <h5 class="fw-bold mb-3 text-success">
+                    Newsletter
+                </h5>
+
+                <p>
+                    Recevez nos nouveautés, promotions et conseils agricoles.
+                </p>
+
+                <form method="POST"
+                    action="{% url 'subscribe_newsletter' %}">
+
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+
+                        <input type="email"
+                            name="email"
+                            class="form-control newsletter-input"
+                            placeholder="Votre adresse email"
+                            required>
+
+                    </div>
+
+                    <button type="submit"
+                            class="btn newsletter-btn w-100">
+
+                        S'abonner
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
 
         <!-- RESEAUX SOCIAUX -->
-        <div class="text-center mb-3">
+        <div class="text-center mb-3 social-icons">
 
             <a href="#" class="text-light fs-4 mx-2">
                 <i class="bi bi-facebook"></i>

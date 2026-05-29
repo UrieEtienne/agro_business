@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="container py-5">
+
+    <h1 class="text-success mb-5">
+
+        Mon Espace Client
+
+    </h1>
+
+    <div class="row g-4">
+
+        <div class="col-lg-3">
+
+            <div class="card shadow p-4 text-center">
+
+                <h4>
+
+                    Commandes
+
+                </h4>
+
+                <h2 class="text-success">
+
+                    {{ total_commandes }}
+
+                </h2>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3">
+
+            <div class="card shadow p-4 text-center">
+
+                <h4>
+
+                    Favoris
+
+                </h4>
+
+                <h2 class="text-danger">
+
+                    {{ total_favoris }}
+
+                </h2>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3">
+
+            <div class="card shadow p-4 text-center">
+
+                <h4>
+
+                    Points Fidélité
+
+                </h4>
+
+                <h2 class="text-warning">
+
+                    {{ points }}
+
+                </h2>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3">
+
+            <div class="card shadow p-4 text-center">
+
+                <h4>
+
+                    Notifications
+
+                </h4>
+
+                <h2 class="text-primary">
+
+                    {{ notifications }}
+
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

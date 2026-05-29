@@ -12,7 +12,7 @@ class Product(models.Model):
     name = models.CharField(max_length=100)
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
     description = models.TextField()
-    image = models.ImageField(upload_to='products/')
+    image = models.ImageField(upload_to='produits/')
     available = models.BooleanField(default=True)
 
     def __str__(self):

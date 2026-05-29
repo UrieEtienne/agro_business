@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="container py-5">
+
+    <h1 class="text-success text-center mb-5">
+
+        Paiement Mobile Money
+
+    </h1>
+
+    <form method="POST"
+          class="shadow p-5 bg-white rounded">
+
+        {% csrf_token %}
+
+        <div class="mb-3">
+
+            <label>
+                Nom Client
+            </label>
+
+            <input type="text"
+                   name="client_nom"
+                   class="form-control"
+                   required>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>
+                Téléphone
+            </label>
+
+            <input type="text"
+                   name="telephone"
+                   class="form-control"
+                   required>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>
+                Montant
+            </label>
+
+            <input type="number"
+                   name="montant"
+                   class="form-control"
+                   required>
+
+        </div>
+
+        <div class="mb-4">
+
+            <label>
+                Méthode
+            </label>
+
+            <select name="methode"
+                    class="form-select">
+
+                <option value="orange_money">
+
+                    Orange Money
+
+                </option>
+
+                <option value="mtn_money">
+
+                    MTN Mobile Money
+
+                </option>
+
+            </select>
+
+        </div>
+
+        <button class="btn btn-success w-100">
+
+            Payer Maintenant
+
+        </button>
+
+    </form>
+
+</section>
+
+{% endblock %}

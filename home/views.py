@@ -1,15 +1,16 @@
 from django.shortcuts import render
 from gallery.models import Media
-from products.models import Product
+from produits.models import Produit
 from blog.models import Post
 from contact.models import Contact
 from testimonials.models import Testimonial
 
 
+
 # PAGE ACCUEIL
 def home(request):
     testimonials = Testimonial.objects.all()
-    products = Product.objects.all()[:6]
+    produits = Produit.objects.all()[:6]
 
     posts = Post.objects.all().order_by('-created_at')[:3]
 
@@ -18,7 +19,7 @@ def home(request):
 
     context = {
 
-        'products': products,
+        'produits': produits,
 
         'media': media,
 
@@ -26,7 +27,7 @@ def home(request):
         
         'testimonials': testimonials,
 
-        'total_products': Product.objects.count(),
+        'total_produits': Produit.objects.count(),
 
         'total_publications': Media.objects.count(),
 
@@ -46,7 +47,7 @@ def dashboard(request):
 
     total_media = Media.objects.count()
 
-    total_products = Product.objects.count()
+    total_produits = Produit.objects.count()
 
     total_posts = Post.objects.count()
 
@@ -54,9 +55,26 @@ def dashboard(request):
 
     context = {
         'total_media': total_media,
-        'total_products': total_products,
+        'total_produits': total_produits,
         'total_posts': total_posts,
         'total_contacts': total_contacts,
     }
 
     return render(request, 'dashboard/dashboard.html', context)
+
+# PAGE PUBLICITES
+def publicites(request):
+
+    return render(request, 'publicites.html')
+
+
+# PAGE TEMOIGNAGES
+def temoignages(request):
+
+    testimonials = Testimonial.objects.all()
+
+    context = {
+        'testimonials': testimonials
+    }
+
+    return render(request, 'temoignages.html', context)

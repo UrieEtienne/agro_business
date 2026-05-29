@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block title %}
+Livraisons
+{% endblock %}
+
+{% block content %}
+
+<section class="container py-5">
+
+    <h1 class="text-success mb-5 text-center">
+
+        Gestion des Livraisons
+
+    </h1>
+
+    <div class="table-responsive">
+
+        <table class="table table-bordered table-hover align-middle">
+
+            <thead class="table-success">
+
+                <tr>
+
+                    <th>Client</th>
+
+                    <th>Produit</th>
+
+                    <th>Quantité</th>
+
+                    <th>Ville</th>
+
+                    <th>Chauffeur</th>
+
+                    <th>Statut</th>
+
+                    <th>Date</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for livraison in livraisons %}
+
+                <tr>
+
+                    <td>
+                        {{ livraison.client_nom }}
+                    </td>
+
+                    <td>
+                        {{ livraison.produit }}
+                    </td>
+
+                    <td>
+                        {{ livraison.quantite }}
+                    </td>
+
+                    <td>
+                        {{ livraison.ville }}
+                    </td>
+
+                    <td>
+                        {{ livraison.chauffeur }}
+                    </td>
+
+                    <td>
+
+                        {% if livraison.statut == 'livree' %}
+
+                            <span class="badge bg-success">
+                                Livrée
+                            </span>
+
+                        {% elif livraison.statut == 'en_livraison' %}
+
+                            <span class="badge bg-warning text-dark">
+                                En livraison
+                            </span>
+
+                        {% elif livraison.statut == 'annulee' %}
+
+                            <span class="badge bg-danger">
+                                Annulée
+                            </span>
+
+                        {% else %}
+
+                            <span class="badge bg-secondary">
+                                {{ livraison.get_statut_display }}
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                    <td>
+                        {{ livraison.date_creation|date:"d/m/Y H:i" }}
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="7"
+                        class="text-center">
+
+                        Aucune livraison disponible.
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+{% endblock %}

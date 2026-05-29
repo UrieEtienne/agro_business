@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="container py-5">
+
+    <h1 class="text-danger mb-5">
+
+        Alertes Stock Faible
+
+    </h1>
+
+    <div class="row">
+
+        {% for stock in alertes %}
+
+        <div class="col-lg-4 mb-4">
+
+            <div class="card shadow border-0 p-4">
+
+                <h4>
+
+                    {{ stock.produit.nom }}
+
+                </h4>
+
+                <p>
+
+                    Quantité restante :
+                    {{ stock.quantite }}
+
+                </p>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="col-12">
+
+            <div class="alert alert-success">
+
+                Aucun stock faible.
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

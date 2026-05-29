@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Mon Panier
+{% endblock %}
+
+{% block content %}
+
+<section class="container py-5">
+
+    <h1 class="text-success mb-5">
+        Mon Panier
+    </h1>
+
+    {% if panier.items.all %}
+
+    <div class="table-responsive">
+
+        <table class="table table-bordered align-middle">
+
+            <thead class="table-success">
+
+                <tr>
+
+                    <th>Produit</th>
+
+                    <th>Prix</th>
+
+                    <th>Quantité</th>
+
+                    <th>Total</th>
+
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for item in panier.items.all %}
+
+                <tr>
+
+                    <td>
+                        {{ item.produit.nom }}
+                    </td>
+
+                    <td>
+                        {{ item.produit.prix }} GNF
+                    </td>
+
+                    <td>
+                        {{ item.quantite }}
+                    </td>
+
+                    <td>
+                        {{ item.total_item }} GNF
+                    </td>
+
+                    <td>
+
+                        <a href="{% url 'diminuer_quantite' item.id %}"
+                           class="btn btn-warning btn-sm">
+
+                            -
+
+                        </a>
+
+                        <a href="{% url 'ajouter_panier' item.produit.id %}"
+                           class="btn btn-success btn-sm">
+
+                            +
+
+                        </a>
+
+                        <a href="{% url 'supprimer_panier' item.id %}"
+                           class="btn btn-danger btn-sm">
+
+                            Supprimer
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="text-end mt-4">
+
+        <h3>
+
+            Total :
+            <span class="text-success">
+
+                {{ panier.total_panier }} GNF
+
+            </span>
+
+        </h3>
+
+    </div>
+
+    {% else %}
+
+    <div class="alert alert-warning">
+
+        Votre panier est vide.
+
+    </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

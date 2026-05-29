@@ -1,0 +1,184 @@
+<!-- =========================
+     CARTE GOOGLE MAPS
+========================= -->
+
+<div class="card shadow border-0 rounded-4 overflow-hidden">
+
+    <!-- HEADER -->
+    <div class="card-header bg-success text-white py-3">
+
+        <h4 class="mb-0">
+
+            📍 Localisation de la Livraison
+
+        </h4>
+
+    </div>
+
+    <!-- MAP -->
+    <div id="map"
+         style="height: 400px; width: 100%;">
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="card-body text-center">
+
+        <button onclick="getLocation()"
+                class="btn btn-success px-4 py-2">
+
+            📡 Envoyer ma position
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     GOOGLE MAPS API
+========================= -->
+
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+
+<!-- =========================
+     SCRIPT GOOGLE MAP
+========================= -->
+
+<script>
+
+    // =========================
+    // INITIALISATION CARTE
+    // =========================
+
+    function initMap() {
+
+        // POSITION PAR DEFAUT
+
+        const position = {
+
+            lat: {{ livraison.latitude|default:0 }},
+
+            lng: {{ livraison.longitude|default:0 }}
+
+        };
+
+        // CREATION MAP
+
+        const map = new google.maps.Map(
+
+            document.getElementById("map"),
+
+            {
+
+                zoom: 12,
+
+                center: position,
+
+            }
+
+        );
+
+        // MARQUEUR POSITION
+
+        new google.maps.Marker({
+
+            position: position,
+
+            map: map,
+
+            title: "Position Livraison"
+
+        });
+
+    }
+
+    // CHARGEMENT PAGE
+
+    window.onload = initMap;
+
+</script>
+
+<!-- =========================
+     GEOLOCALISATION CLIENT
+========================= -->
+
+<script>
+
+    function getLocation() {
+
+        // VERIFICATION SUPPORT GPS
+
+        if (!navigator.geolocation) {
+
+            alert("La géolocalisation n'est pas supportée.");
+
+            return;
+
+        }
+
+        // RECUPERATION POSITION
+
+        navigator.geolocation.getCurrentPosition(
+
+            function(position) {
+
+                // LATITUDE / LONGITUDE
+
+                const latitude = position.coords.latitude;
+
+                const longitude = position.coords.longitude;
+
+                // ENVOI DJANGO
+
+                fetch("/livraisons/update-location/", {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type": "application/json",
+
+                        "X-CSRFToken": "{{ csrf_token }}"
+
+                    },
+
+                    body: JSON.stringify({
+
+                        lat: latitude,
+
+                        lng: longitude
+
+                    })
+
+                })
+
+                .then(response => response.json())
+
+                .then(data => {
+
+                    alert("Position envoyée avec succès.");
+
+                })
+
+                .catch(error => {
+
+                    console.error(error);
+
+                    alert("Erreur lors de l'envoi.");
+
+                });
+
+            },
+
+            function(error) {
+
+                alert("Impossible de récupérer la position.");
+
+            }
+
+        );
+
+    }
+
+</script>

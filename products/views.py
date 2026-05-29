@@ -4,36 +4,36 @@ from .models import Product
 
 # LISTE PRODUITS
 
-def products(request):
+def produits(request):
 
-    products = Product.objects.all()
+    produits = Product.objects.all()
 
     context = {
-        'products': products
+        'produits': produits
     }
 
     return render(
         request,
-        'products/products.html',
+        'produits/produits.html',
         context
     )
 
 
 # DETAIL PRODUIT
 
-def product_detail(request, id):
+def produit_detail(request, id):
 
-    product = get_object_or_404(
+    produit = get_object_or_404(
         Product,
         id=id
     )
 
     context = {
-        'product': product
+        'produit': produit
     }
 
     return render(
         request,
-        'products/product_detail.html',
+        'produits/produit_detail.html',
         context
     )

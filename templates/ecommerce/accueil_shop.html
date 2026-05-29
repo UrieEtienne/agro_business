@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}
+Boutique Eden Agro
+{% endblock %}
+
+{% block content %}
+
+<section class="py-5 bg-light">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h1 class="fw-bold text-success">
+                Boutique Eden Agro
+            </h1>
+
+            <p class="lead">
+                Produits agricoles de qualité
+            </p>
+
+        </div>
+
+        <!-- PROMOTIONS -->
+        <div class="row g-4">
+
+            {% for promo in promotions %}
+
+            <div class="col-md-4">
+
+                <div class="card border-0 shadow h-100">
+
+                    <img src="{{ promo.image.url }}"
+                         class="card-img-top"
+                         style="height:300px; object-fit:cover;"
+                         alt="{{ promo.titre }}">
+
+                    <div class="card-body">
+
+                        <span class="badge bg-danger mb-3">
+
+                            -{{ promo.reduction }}%
+
+                        </span>
+
+                        <h4 class="fw-bold">
+
+                            {{ promo.titre }}
+
+                        </h4>
+
+                        <p>
+
+                            {{ promo.description|truncatewords:20 }}
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

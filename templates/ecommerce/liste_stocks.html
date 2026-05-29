@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}
+Gestion Stocks
+{% endblock %}
+
+{% block content %}
+
+<section class="container py-5">
+
+    <h1 class="text-success mb-5">
+
+        Gestion des Stocks
+
+    </h1>
+
+    <div class="table-responsive">
+
+        <table class="table table-hover table-bordered">
+
+            <thead class="table-success">
+
+                <tr>
+
+                    <th>Produit</th>
+
+                    <th>Quantité</th>
+
+                    <th>Seuil Alerte</th>
+
+                    <th>Statut</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for stock in stocks %}
+
+                <tr>
+
+                    <td>
+
+                        {{ stock.produit.nom }}
+
+                    </td>
+
+                    <td>
+
+                        {{ stock.quantite }}
+
+                    </td>
+
+                    <td>
+
+                        {{ stock.seuil_alerte }}
+
+                    </td>
+
+                    <td>
+
+                        {% if stock.stock_faible %}
+
+                            <span class="badge bg-danger">
+
+                                Stock Faible
+
+                            </span>
+
+                        {% else %}
+
+                            <span class="badge bg-success">
+
+                                Disponible
+
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+{% endblock %}
