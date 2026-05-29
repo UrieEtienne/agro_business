@@ -1,4 +1,6 @@
 from pathlib import Path
+from datetime import timedelta
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -7,6 +9,13 @@ SECRET_KEY = 'django-insecure-ny2y&gx*7g7m1%h$rshf!bgp84*zhh8i9etxwxm$9=*$a8q143
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+LOGIN_URL = "/admin/login/"
+LOGIN_REDIRECT_URL = "/admin/"
+LOGOUT_REDIRECT_URL = "/admin/login/"
+
+# IMPORTANT: désactive redirect profile par défaut
+APPEND_SLASH = True
 # =========================
 # JAZZMIN
 # =========================
@@ -23,11 +32,9 @@ JAZZMIN_SETTINGS = {
 
     "copyright": "Eden Agro Business",
 
-    "site_logo": "images/logo.jpg",
-
-    "login_logo": "images/logo.jpg",
-
-    "site_icon": "images/logo.jpg",
+    "site_logo": None,
+    "login_logo": None,
+    "site_icon": None,
 
     "navigation_expanded": True,
 
@@ -332,6 +339,12 @@ REST_FRAMEWORK = {
 
     ),
 
+}
+
+
+
+SIMPLE_JWT = {
+    "AUTH_HEADER_TYPES": ("Bearer",),
 }
 
 

@@ -1,8 +1,11 @@
 from django.contrib import admin
 from django.urls import path, include
-
+from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
+from django.http import HttpResponse
+from django.contrib.auth import get_user
+from django.shortcuts import redirect
 
 
 from rest_framework_simplejwt.views import (
@@ -11,11 +14,29 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView
 
 )
+def test_user(request):
+    user = get_user(request)
+    return HttpResponse(f"User: {user} | Authenticated: {user.is_authenticated}")
+
+from django.contrib.auth import logout
+from django.http import HttpResponseRedirect
+
+def force_logout(request):
+    logout(request)
+    return HttpResponseRedirect("/admin/login/")
+
+def profile_redirect(request):
+    return redirect("/admin/")
 
 urlpatterns = [
-
+    path("", RedirectView.as_view(url="/admin/")),
     path('admin/', admin.site.urls),
+    path("test-auth/", test_user),
+    path("force-logout/", force_logout),
+    path("accounts/profile/", profile_redirect),
+    path("accounts/profile/", lambda r: redirect("/admin/")),
 
+    
     path('', include('home.urls')),
 
     path('about/', include('about.urls')),
