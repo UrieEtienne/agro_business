@@ -42,6 +42,25 @@ JAZZMIN_SETTINGS = {
 
     "custom_css": "css/admin_custom.css",
 
+    # =========================
+    # NAVIGUER ENTRE ADMIN ET SITE
+    # =========================
+    "topmenu_links": [
+
+        {
+            "name": "Voir le site",
+            "url": "/",
+            "new_window": True,
+        },
+
+        {
+            "name": "Boutique",
+            "url": "/shop/",
+            "new_window": True,
+        },
+
+    ],
+
     "icons": {
 
         "auth": "fas fa-users-cog",
@@ -157,6 +176,8 @@ MIDDLEWARE = [
 
 
 ROOT_URLCONF = 'config.urls'
+
+LOGIN_REDIRECT_URL = "/client/dashboard/"
 
 
 # =========================

@@ -4,14 +4,14 @@ from .models import Produit
 
 def produits(request):
 
-    produits = Produit.objects.filter(
+    produits_list = Produit.objects.filter(
         disponible=True
     ).order_by('-created_at')
 
     return render(
         request,
-        'produits.html',
+        "produits/produits.html",
         {
-            'produits': produits
+            "produits": produits_list
         }
     )

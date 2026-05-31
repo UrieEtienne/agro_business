@@ -1,4 +1,6 @@
 from django.urls import path
+from . import views
+
 
 from .views import (
 
@@ -28,5 +30,7 @@ urlpatterns = [
         name='modifier_profil'
 
     ),
-
+    path('dashboard/', views.dashboard, name='client_dashboard'),
+    path('profil/', views.profil, name='client_profil'),
+    path('commandes/', views.commandes, name='client_commandes'),
 ]

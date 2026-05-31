@@ -7,11 +7,6 @@ Produits
 {% block content %}
 
 <section class="container py-5">
-    <a href="{% url 'ajouter_panier' produit.id %}"
-        class="btn btn-success">
-
-        Ajouter au panier
-    </a>
 
     <h1 class="text-center text-success mb-5">
         Nos Produits
@@ -32,50 +27,35 @@ Produits
 
                 <div class="card-body">
 
-                    <h4 class="fw-bold">
-                        {{ produit.nom }}
-                    </h4>
+                    <h4 class="fw-bold">{{ produit.nom }}</h4>
 
-                    <p class="text-muted">
+                    <p class="text-muted">SKU : {{ produit.sku }}</p>
 
-                        SKU :
-                        {{ produit.sku }}
-
-                    </p>
-
-                    <p>
-                        {{ produit.description|truncatewords:20 }}
-                    </p>
+                    <p>{{ produit.description|truncatewords:20 }}</p>
 
                     {% if produit.promotion %}
-
-                    <span class="badge bg-danger mb-2">
-
-                        Promotion
-
-                    </span>
-
+                        <span class="badge bg-danger mb-2">Promotion</span>
                     {% endif %}
 
                     <div class="mt-3">
 
                         {% if produit.ancien_prix %}
-
-                        <span class="text-muted text-decoration-line-through">
-
-                            {{ produit.ancien_prix }} GNF
-
-                        </span>
-
+                            <span class="text-muted text-decoration-line-through">
+                                {{ produit.ancien_prix }} GNF
+                            </span>
                         {% endif %}
 
                         <h4 class="text-success fw-bold">
-
                             {{ produit.prix }} GNF
-
                         </h4>
 
                     </div>
+
+                    <a href="{% url 'ajouter_panier' produit.id %}"
+                       class="btn btn-success w-100 mt-3">
+
+                        Ajouter au panier
+                    </a>
 
                 </div>
 
@@ -88,9 +68,7 @@ Produits
         <div class="col-12 text-center">
 
             <h4 class="text-muted">
-
                 Aucun produit disponible.
-
             </h4>
 
         </div>

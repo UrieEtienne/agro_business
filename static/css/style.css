@@ -525,5 +525,73 @@ footer a:hover {
     }
 
 }
+/* =========================
+   NAVBAR 3 ZONES ERP
+========================= */
+/* LOGO */
+.navbar-logo{
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+
+.company-name{
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+/* MENU CENTRE */
+.navbar-nav.mx-auto .nav-link{
+    color: white !important;
+    font-weight: 500;
+    padding: 6px 10px;
+}
+
+.navbar-nav.mx-auto .nav-link:hover{
+    color: #ffd700 !important;
+}
+
+/* BOUTONS DROITE */
+.btn-login-custom{
+    background: #f8f8f6;
+    color: black !important;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.btn-login-custom:hover{
+    background: white;
+}
+
+.btn-danger-custom{
+    background: #dc3545;
+    color: white !important;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.btn-danger-custom:hover{
+    background: #b02a37;
+}
+
+/* MOBILE FIX */
+@media(max-width:992px){
+
+    .navbar-nav{
+        text-align: center;
+        background: #0b3d2e;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .ms-lg-auto{
+        margin-left: 0 !important;
+    }
+}
 
 

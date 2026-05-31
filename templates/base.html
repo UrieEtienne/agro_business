@@ -17,14 +17,29 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+
 </head>
 
-<body>
+<body class="app-body">
 
     <!-- NAVBAR -->
     <header class="main-navbar">
         {% include 'partials/navbar.html' %}
     </header>
+    <!-- NOTIFICATION AREA (ERP FUTURE) -->
+    <div id="toast-container"></div>
+    {% if messages %}
+        <div class="container mt-3">
+            {% for message in messages %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 
     <!-- CONTENT -->
     {% block content %}{% endblock %}

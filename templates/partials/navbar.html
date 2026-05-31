@@ -4,23 +4,20 @@
 
     <div class="container">
 
-        <!-- LOGO + NOM -->
-        <a class="navbar-brand d-flex align-items-center" href="/">
+        <!-- LOGO + TITRE -->
+        <a class="navbar-brand d-flex align-items-center gap-2" href="/">
 
             <img src="{% static 'images/logo.png' %}"
                  alt="Logo Eden Agro"
                  class="navbar-logo">
 
-            <div class="logo-text">
-
-                <span class="company-name">
-                    Eden Agro Business & Service
-                </span>
-            </div>
+            <span class="company-name">
+                Eden Agro Business & Service
+            </span>
 
         </a>
 
-        <!-- MENU MOBILE -->
+        <!-- TOGGLER MOBILE -->
         <button class="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
@@ -33,43 +30,64 @@
         <!-- MENU -->
         <div class="collapse navbar-collapse" id="navbarNav">
 
-            <ul class="navbar-nav ms-auto align-items-lg-center">
+            <!-- LIENS À GAUCHE / CENTRE -->
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-2">
 
                 <li class="nav-item">
-                    <a class="nav-link active" href="/">
-                        Accueil
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="/about/">
-                        À Propos
-                    </a>
+                    <a class="nav-link" href="/">Accueil</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/gallery/">
-                        Galerie
-                    </a>
+                    <a class="nav-link" href="/about/">À Propos</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/blog/">
-                        Blog
-                    </a>
+                    <a class="nav-link" href="/gallery/">Galerie</a>
                 </li>
 
-                <!-- BOUTON -->
-                <li class="nav-item ms-lg-4 mt-3 mt-lg-0">
-
-                    <a href="/contact/"
-                       class="btn contact-btn">
-
-                        Nous Contacter
-
-                    </a>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog/">Blog</a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/produits/">Produits</a>
+                </li>
+                <!-- ESPACE CLIENT -->
+                {% if user.is_authenticated %}
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard' %}">Mon Espace</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact/">Contact</a>
+                    </li>
+
+
+                    {% if user.is_staff %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/">Administration</a>
+                    </li>
+                    {% endif %}
+
+                    <li class="nav-item">
+                        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-logout">
+                                Déconnexion
+                            </button>
+                        </form>
+                    </li>
+
+                {% else %}
+
+                    <li class="nav-item">
+                        <a class="btn btn-login" href="{% url 'login' %}">
+                            Connexion
+                        </a>
+                    </li>
+
+                {% endif %}
 
             </ul>
 

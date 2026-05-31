@@ -27,11 +27,13 @@ class Contact(models.Model):
 
 class ContactMessage(models.Model):
 
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=50)
+
+    phone = models.CharField(max_length=50)
 
     email = models.EmailField()
 
-    subject = models.CharField(max_length=255)
+    subject = models.CharField(max_length=120)
 
     message = models.TextField()
 

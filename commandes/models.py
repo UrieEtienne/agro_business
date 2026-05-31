@@ -1,4 +1,6 @@
 from django.db import models
+from factures.models import Facture
+import uuid
 
 
 # =========================
@@ -136,3 +138,14 @@ class LigneCommande(models.Model):
     def __str__(self):
 
         return f"{self.produit} ({self.quantite})"
+    
+
+    def generer_facture(self):
+
+        facture = Facture.objects.create(
+            numero=f"FAC-{uuid.uuid4().hex[:6].upper()}",
+            commande=self,
+            statut="en_attente"
+        )
+
+        return facture

@@ -6,33 +6,45 @@ from .models import Facture
 class FactureAdmin(admin.ModelAdmin):
 
     list_display = (
-
-        'id',
+        'numero',
         'client_nom',
-        'produit',
-        'quantite',
-        'prix_unitaire',
         'statut',
-        'date_creation'
-
+        'valide_par_dg',
+        'valideur',
+        'date_validation',
     )
 
     list_filter = (
-
         'statut',
-
+        'valide_par_dg',
     )
+    actions = ["valider_factures_par_dg"]
 
-    search_fields = (
+    def valider_factures_par_dg(self, request, queryset):
 
-        'client_nom',
-        'telephone',
-        'produit'
+        # 🔐 SÉCURITÉ : seul superuser / DG peut valider
+        if not request.user.is_superuser:
+            self.message_user(
+                request,
+                "Accès refusé : seul le Directeur Général peut valider.",
+                level="error"
+            )
+            return
 
-    )
+        updated = 0
 
-    ordering = (
+        for facture in queryset:
 
-        '-date_creation',
+            # éviter double validation
+            if facture.statut == "validee":
+                continue
 
-    )
+            facture.valider_par_dg(request.user)
+            updated += 1
+
+        self.message_user(
+            request,
+            f"{updated} facture(s) validée(s) par le DG avec succès."
+        )
+
+    valider_factures_par_dg.short_description = "Valider les factures (DG)"

@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 from django.http import HttpResponse
 from django.contrib.auth import get_user
 from django.shortcuts import redirect
+from django.contrib.auth.views import LogoutView
 
 
 from rest_framework_simplejwt.views import (
@@ -29,46 +30,52 @@ def profile_redirect(request):
     return redirect("/admin/")
 
 urlpatterns = [
-    path("", RedirectView.as_view(url="/admin/")),
     path('admin/', admin.site.urls),
+
     path("test-auth/", test_user),
     path("force-logout/", force_logout),
+
+    path('comptes/', include('comptes.urls')),
+
     path("accounts/profile/", profile_redirect),
-    path("accounts/profile/", lambda r: redirect("/admin/")),
 
-    
+    # Espace client
+    path('client/', include('clients.urls')),
+
+    # Site vitrine
     path('', include('home.urls')),
-
     path('about/', include('about.urls')),
-
     path('produits/', include('produits.urls')),
-
     path('gallery/', include('gallery.urls')),
-
     path('blog/', include('blog.urls')),
-
     path('contact/', include('contact.urls')),
     path('newsletter/', include('newsletter.urls')),
-    path('newsletter/',include('newsletter.urls')),
 
     # E-commerce
-    path('shop/',include('ecommerce.urls')),
-    path('produits/',include('produits.urls')),
-    path('panier/',include('panier.urls')),
-    path('commandes/',include('commandes.urls')),
-    path('livraisons/',include('livraisons.urls')),
-    path('factures/',include('factures.urls')),
-    path('paiements/',include('paiements.urls')),
-    path('clients/',include('clients.urls')),
-    path('api/',include('clients.api_urls')),
-    path('stocks/',include('stocks.urls')),
-    path('comptes/',include('comptes.urls')),
-    # Token
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('shop/', include('ecommerce.urls')),
+    path('panier/', include('panier.urls')),
+    path('commandes/', include('commandes.urls')),
+    path('livraisons/', include('livraisons.urls')),
+    path('factures/', include('factures.urls')),
+    path('paiements/', include('paiements.urls')),
+    path('clients/', include('clients.urls')),
+    path('stocks/', include('stocks.urls')),
 
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/', include('clients.api_urls')),
+
+    # JWT
+    path(
+        'api/token/',
+        TokenObtainPairView.as_view(),
+        name='token_obtain_pair'
+    ),
+
+    path(
+        'api/token/refresh/',
+        TokenRefreshView.as_view(),
+        name='token_refresh'
+    ),
 ]
-
 if settings.DEBUG:
     urlpatterns += static(
         settings.MEDIA_URL,

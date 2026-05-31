@@ -89,4 +89,4 @@ def logout_view(request):
 
     logout(request)
 
-    return redirect('/')
+    return redirect('home')
