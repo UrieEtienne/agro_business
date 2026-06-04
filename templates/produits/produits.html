@@ -1,81 +1,71 @@
 {% extends "base.html" %}
 
-{% block title %}
-Produits
-{% endblock %}
+{% block title %}Produits{% endblock %}
 
 {% block content %}
 
 <section class="container py-5">
 
     <h1 class="text-center text-success mb-5">
-        Nos Produits
+        tous les produits 
     </h1>
 
-    <div class="row g-4">
+    <!-- CATEGORIES -->
+    {% for categorie in categories %}
 
-        {% for produit in produits %}
+        <h2 class="text-success mt-5">
+            {{ categorie.nom }}
+        </h2>
 
-        <div class="col-lg-4 col-md-6">
+        <div class="row g-4">
 
-            <div class="card border-0 shadow h-100">
+            {% for produit in categorie.produits.all %}
 
-                <img src="{{ produit.image.url }}"
-                     class="card-img-top"
-                     style="height:300px; object-fit:cover;"
-                     alt="{{ produit.nom }}">
+                <div class="col-lg-4 col-md-6">
 
-                <div class="card-body">
+                    <div class="card border-0 shadow h-100">
 
-                    <h4 class="fw-bold">{{ produit.nom }}</h4>
+                        <img src="{{ produit.image.url }}"
+                             class="card-img-top"
+                             style="height:300px; object-fit:cover;">
 
-                    <p class="text-muted">SKU : {{ produit.sku }}</p>
+                        <div class="card-body">
 
-                    <p>{{ produit.description|truncatewords:20 }}</p>
+                            <h5 class="product-name">
+                                {{ produit.nom }}
+                            </h5>
 
-                    {% if produit.promotion %}
-                        <span class="badge bg-danger mb-2">Promotion</span>
-                    {% endif %}
+                            <p class="product-price">
+                                {{ produit.prix }} GNF
+                            </p>
 
-                    <div class="mt-3">
+                            <div class="d-flex gap-2 mt-3">
 
-                        {% if produit.ancien_prix %}
-                            <span class="text-muted text-decoration-line-through">
-                                {{ produit.ancien_prix }} GNF
-                            </span>
-                        {% endif %}
+                                <a href="{% url 'ajouter_panier' produit.id %}"
+                                   class="btn-panier">
+                                    <i class="bi bi-cart3"></i>
+                                </a>
 
-                        <h4 class="text-success fw-bold">
-                            {{ produit.prix }} GNF
-                        </h4>
+                                <a href="{% url 'creer_commande' produit.id %}"
+                                   class="btn-commande">
+                                    Commander
+                                </a>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
-                    <a href="{% url 'ajouter_panier' produit.id %}"
-                       class="btn btn-success w-100 mt-3">
-
-                        Ajouter au panier
-                    </a>
-
                 </div>
 
-            </div>
+            {% empty %}
+                <p>Aucun produit dans cette catégorie</p>
+            {% endfor %}
 
         </div>
 
-        {% empty %}
-
-        <div class="col-12 text-center">
-
-            <h4 class="text-muted">
-                Aucun produit disponible.
-            </h4>
-
-        </div>
-
-        {% endfor %}
-
-    </div>
+    {% endfor %}
 
 </section>
 

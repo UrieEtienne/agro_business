@@ -1,5 +1,17 @@
 import requests
 import qrcode
+from geopy.geocoders import Nominatim
+
+# Livraison automatique
+def get_lat_lng(quartier, ville):
+    geolocator = Nominatim(user_agent="livraison_app")
+
+    location = geolocator.geocode(f"{quartier}, {ville}, Guinea")
+
+    if location:
+        return location.latitude, location.longitude
+
+    return None, None
 
 def send_whatsapp(message, phone):
 

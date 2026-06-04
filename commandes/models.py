@@ -1,151 +1,44 @@
 from django.db import models
-from factures.models import Facture
-import uuid
+from panier.models import Panier
+from produits.models import Produit
 
-
-# =========================
-# CLIENT
-# =========================
-
-class Client(models.Model):
-
-    nom = models.CharField(
-        max_length=255
-    )
-
-    telephone = models.CharField(
-        max_length=50
-    )
-
-    adresse = models.TextField()
-
-    email = models.EmailField(
-        blank=True,
-        null=True
-    )
-
-    def __str__(self):
-        return self.nom
-
-
-# =========================
-# COMMANDE
-# =========================
 
 class Commande(models.Model):
 
-    STATUT_CHOICES = [
+    produit = models.ForeignKey(
+        Produit,
+        on_delete=models.CASCADE,
+        related_name="commandes"
+    )
 
+    panier = models.OneToOneField(
+        Panier,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
+    )
+
+    quantite = models.PositiveIntegerField(default=1)
+
+    nom_client = models.CharField(max_length=200)
+    telephone = models.CharField(max_length=20)
+    adresse = models.TextField()
+
+    STATUTS = [
         ('en_attente', 'En attente'),
-
-        ('validee', 'Validée'),
-
-        ('en_livraison', 'En livraison'),
-
+        ('confirmee', 'Confirmée'),
+        ('preparation', 'Préparation'),
         ('livree', 'Livrée'),
-
         ('annulee', 'Annulée'),
     ]
 
-    PAIEMENT_CHOICES = [
-
-        ('non_paye', 'Non payé'),
-
-        ('paye', 'Payé'),
-
-        ('partiel', 'Paiement partiel'),
-    ]
-
-    numero_commande = models.CharField(
-        max_length=100,
-        unique=True
-    )
-
-    client = models.ForeignKey(
-        Client,
-        on_delete=models.CASCADE,
-        related_name='commandes'
-    )
-
-    date_commande = models.DateTimeField(
-        auto_now_add=True
-    )
-
-    montant_total = models.DecimalField(
-        max_digits=12,
-        decimal_places=2,
-        default=0
-    )
-
     statut = models.CharField(
-        max_length=50,
-        choices=STATUT_CHOICES,
+        max_length=20,
+        choices=STATUTS,
         default='en_attente'
     )
 
-    paiement = models.CharField(
-        max_length=50,
-        choices=PAIEMENT_CHOICES,
-        default='non_paye'
-    )
+    date_creation = models.DateTimeField(auto_now_add=True)
 
-    commentaire = models.TextField(
-        blank=True,
-        null=True
-    )
-
-    def __str__(self):
-        return self.numero_commande
-
-
-# =========================
-# LIGNE COMMANDE
-# =========================
-
-class LigneCommande(models.Model):
-
-    commande = models.ForeignKey(
-        Commande,
-        on_delete=models.CASCADE,
-        related_name='lignes'
-    )
-
-    produit = models.CharField(
-        max_length=255
-    )
-
-    quantite = models.PositiveIntegerField()
-
-    prix_unitaire = models.DecimalField(
-        max_digits=10,
-        decimal_places=2
-    )
-
-    total = models.DecimalField(
-        max_digits=12,
-        decimal_places=2
-    )
-
-    def save(self, *args, **kwargs):
-
-        self.total = (
-            self.quantite *
-            self.prix_unitaire
-        )
-
-        super().save(*args, **kwargs)
-
-    def __str__(self):
-
-        return f"{self.produit} ({self.quantite})"
-    
-
-    def generer_facture(self):
-
-        facture = Facture.objects.create(
-            numero=f"FAC-{uuid.uuid4().hex[:6].upper()}",
-            commande=self,
-            statut="en_attente"
-        )
-
-        return facture
+    def montant_total(self):
+        return self.panier.total_panier() if self.panier else 0

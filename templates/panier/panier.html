@@ -5,119 +5,125 @@ Mon Panier
 {% endblock %}
 
 {% block content %}
+<form method="post">
+    {% csrf_token %}
+    <section class="container py-5">
 
-<section class="container py-5">
+        <h1 class="text-success mb-5">
+            Mon Panier
+        </h1>
 
-    <h1 class="text-success mb-5">
-        Mon Panier
-    </h1>
+        {% if panier.items.all %}
 
-    {% if panier.items.all %}
+        <div class="table-responsive">
 
-    <div class="table-responsive">
+            <table class="table table-bordered align-middle">
 
-        <table class="table table-bordered align-middle">
+                <thead class="table-success">
 
-            <thead class="table-success">
+                    <tr>
 
-                <tr>
+                        <th>Produit</th>
 
-                    <th>Produit</th>
+                        <th>Prix</th>
 
-                    <th>Prix</th>
+                        <th>Quantité</th>
 
-                    <th>Quantité</th>
+                        <th>Total</th>
 
-                    <th>Total</th>
+                        <th>Actions</th>
 
-                    <th>Actions</th>
+                    </tr>
 
-                </tr>
+                </thead>
 
-            </thead>
+                <tbody>
 
-            <tbody>
+                    {% for item in panier.items.all %}
 
-                {% for item in panier.items.all %}
+                    <tr>
 
-                <tr>
+                        <td>
+                            {{ item.produit.nom }}
+                        </td>
 
-                    <td>
-                        {{ item.produit.nom }}
-                    </td>
+                        <td>
+                            {{ item.produit.prix }} GNF
+                        </td>
 
-                    <td>
-                        {{ item.produit.prix }} GNF
-                    </td>
+                        <td>
+                            {{ item.quantite }}
+                        </td>
 
-                    <td>
-                        {{ item.quantite }}
-                    </td>
+                        <td>
+                            {{ item.total_item }} GNF
+                        </td>
 
-                    <td>
-                        {{ item.total_item }} GNF
-                    </td>
+                        <td>
 
-                    <td>
+                            <a href="{% url 'diminuer_quantite' item.id %}"
+                            class="btn btn-warning btn-sm">
 
-                        <a href="{% url 'diminuer_quantite' item.id %}"
-                           class="btn btn-warning btn-sm">
+                                -
 
-                            -
+                            </a>
 
-                        </a>
+                            <a href="{% url 'ajouter_panier' item.produit.id %}"
+                            class="btn btn-success btn-sm">
 
-                        <a href="{% url 'ajouter_panier' item.produit.id %}"
-                           class="btn btn-success btn-sm">
+                                +
 
-                            +
+                            </a>
 
-                        </a>
+                            <a href="{% url 'supprimer_panier' item.id %}"
+                            class="btn btn-danger btn-sm">
 
-                        <a href="{% url 'supprimer_panier' item.id %}"
-                           class="btn btn-danger btn-sm">
+                                Supprimer
 
-                            Supprimer
+                            </a>
 
-                        </a>
+                        </td>
 
-                    </td>
+                    </tr>
 
-                </tr>
+                    {% endfor %}
 
-                {% endfor %}
+                </tbody>
 
-            </tbody>
+            </table>
 
-        </table>
+        </div>
 
-    </div>
+        <div class="text-end mt-4">
 
-    <div class="text-end mt-4">
+            <h3>
 
-        <h3>
+                Total :
+                <span class="text-success">
 
-            Total :
-            <span class="text-success">
+                    {{ panier.total_panier }} GNF
 
-                {{ panier.total_panier }} GNF
+                </span>
 
-            </span>
+            </h3>
 
-        </h3>
+        </div>
+        <!-- ✅ BOUTON IMPORTANT -->
+        <button type="submit">
+            Mettre à jour le panier
+        </button>
 
-    </div>
+        {% else %}
 
-    {% else %}
+        <div class="alert alert-warning">
 
-    <div class="alert alert-warning">
+            Votre panier est vide.
 
-        Votre panier est vide.
+        </div>
 
-    </div>
+        {% endif %}
 
-    {% endif %}
+    </section>
 
-</section>
-
-{% endblock %}
+    {% endblock %}
+</form>

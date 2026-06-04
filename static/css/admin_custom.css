@@ -12,7 +12,7 @@ body {
 =================================== */
 
 .main-header.navbar {
-    background: linear-gradient(90deg, #4e73df, #224abe) !important;
+    background: linear-gradient(90deg, #4e73df, #229abe) !important;
     border: none !important;
 }
 
@@ -30,7 +30,7 @@ body {
 =================================== */
 
 .brand-link {
-    background: #4e73df !important;
+    background: #4ea5df !important;
     color: white !important;
 }
 
@@ -50,12 +50,12 @@ body {
 }
 
 .sidebar .nav-link:hover {
-    background: #4e73df !important;
+    background: #4e9edf !important;
     color: white !important;
 }
 
 .sidebar .nav-link.active {
-    background: #4e73df !important;
+    background: #4ea5df !important;
     color: white !important;
 }
 
@@ -82,7 +82,7 @@ body {
 =================================== */
 
 .table thead th {
-    background: #4e73df !important;
+    background: #88d5e2 !important;
     color: white !important;
 }
 
@@ -91,7 +91,7 @@ body {
 =================================== */
 
 .btn-primary {
-    background: #4e73df !important;
+    background: #5d6c97 !important;
     border: none !important;
 }
 

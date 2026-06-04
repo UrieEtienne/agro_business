@@ -90,3 +90,24 @@ def diminuer_quantite(request, item_id):
         item.delete()
 
     return redirect('panier_detail')
+
+# le bouton mise en jour
+def panier_view(request):
+
+    panier_items = Panier.objects.all()
+
+    if request.method == "POST":
+
+        for item in panier_items:
+            qte = request.POST.get(f"quantite_{item.id}")
+
+            if qte:
+                item.quantite = int(qte)
+                item.save()
+
+    total = sum(item.quantite * item.produit.prix for item in panier_items)
+
+    return render(request, "panier.html", {
+        "panier_items": panier_items,
+        "total": total
+    })

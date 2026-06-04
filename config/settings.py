@@ -34,7 +34,7 @@ JAZZMIN_SETTINGS = {
 
     "site_logo": None,
     "login_logo": None,
-    "site_icon": None,
+    "site_icon": "images/favicon.ico",
 
     "navigation_expanded": True,
 
@@ -137,7 +137,7 @@ INSTALLED_APPS = [
 
     # E-COMMERCE
     'produits',
-    'categories',
+    'dashboard',
     'ecommerce',
     'stocks',
     'panier',

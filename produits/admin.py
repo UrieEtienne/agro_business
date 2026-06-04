@@ -1,5 +1,11 @@
 from django.contrib import admin
-from .models import Produit
+from .models import Produit, Categorie
+
+
+@admin.register(Categorie)
+class CategorieAdmin(admin.ModelAdmin):
+    list_display = ('nom', 'slug')
+    search_fields = ('nom', 'slug')
 
 
 @admin.register(Produit)
@@ -8,6 +14,7 @@ class ProduitAdmin(admin.ModelAdmin):
     list_display = (
         'nom',
         'sku',
+        'categorie',
         'prix',
         'stock',
         'promotion',
@@ -15,6 +22,7 @@ class ProduitAdmin(admin.ModelAdmin):
     )
 
     list_filter = (
+        'categorie',
         'promotion',
         'disponible',
     )
@@ -28,5 +36,19 @@ class ProduitAdmin(admin.ModelAdmin):
         'prix',
         'stock',
         'promotion',
+        'disponible',
+    )
+
+    # ⭐ IMPORTANT
+    fields = (
+        'nom',
+        'sku',
+        'categorie',
+        'image',
+        'prix',
+        'ancien_prix',
+        'promotion',
+        'description',
+        'stock',
         'disponible',
     )

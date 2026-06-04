@@ -8,14 +8,7 @@ class PanierItemInline(admin.TabularInline):
 
     extra = 0
 
-
 @admin.register(Panier)
 class PanierAdmin(admin.ModelAdmin):
-
-    list_display = (
-        'id',
-        'session_id',
-        'created_at'
-    )
-
+    list_display = ('id', 'user', 'session_id', 'created_at')
     inlines = [PanierItemInline]

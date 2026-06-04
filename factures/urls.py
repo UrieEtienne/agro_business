@@ -18,4 +18,5 @@ urlpatterns = [
         name='facture_pdf'
     ),
 
+ path('facture/pdf/<int:id>/', facture_pdf, name='facture_pdf'),
 ]

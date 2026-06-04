@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    {% load static %}
+
+    <style>
+
+        body {
+            font-family: Arial;
+            background: #f6f8fb;
+            padding: 30px;
+        }
+
+        /* HEADER PRO ENTREPRISE */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .company-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+
+        .company-name {
+            font-size: 26px;
+            font-weight: bold;
+            color: #198754;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #6c757d;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #198754;
+            margin-top: 10px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: #198754;
+            color: white;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        .total {
+            text-align: right;
+            margin-top: 20px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #198754;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HEADER ENTREPRISE -->
+    <div class="header">
+
+        <div class="company-box">
+
+            <img src="{% static 'images/logo.png' %}" class="logo">
+
+            <div>
+                <div class="company-name">
+                    Eden Agro Business & Service
+                </div>
+                <div class="subtitle">
+                    Gestion Agricole & Commerciale
+                </div>
+            </div>
+
+        </div>
+
+        <div class="title">
+            FACTURE CLIENT
+        </div>
+
+    </div>
+
+    <!-- INFO -->
+    <div class="card">
+
+        <p><strong>Facture :</strong> #{{ facture.id }}</p>
+        <p><strong>Client :</strong> {{ facture.client_nom }}</p>
+        <p><strong>Email :</strong> {{ facture.client_email }}</p>
+        <p><strong>Date :</strong> {{ facture.date_creation }}</p>
+
+    </div>
+
+    <!-- TABLE PRODUITS -->
+    <div class="card">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>Qté</th>
+                    <th>Prix</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>{{ facture.produit }}</td>
+                    <td>{{ facture.quantite }}</td>
+                    <td>{{ facture.prix_unitaire }}</td>
+                    <td>{{ facture.total }}</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <!-- TOTAL -->
+    <div class="total">
+
+        TVA : {{ facture.tva }} % <br>
+        TOTAL : {{ facture.total }} GNF
+
+    </div>
+
+</body>
+
+</html>

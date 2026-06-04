@@ -1,30 +1,30 @@
 from django.db import models
 from produits.models import Produit
+from django.conf import settings
 
 
 class Panier(models.Model):
 
-    session_id = models.CharField(
-        max_length=255
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
     )
 
-    created_at = models.DateTimeField(
-        auto_now_add=True
+    session_id = models.CharField(
+        max_length=120,
+        blank=True,
+        null=True
     )
+
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def total_panier(self):
-
-        total = 0
-
-        for item in self.items.all():
-
-            total += item.total_item()
-
-        return total
+        return sum(item.total_item() for item in self.items.all())
 
     def __str__(self):
-
-        return f"Panier {self.id}"
+        return f"Panier #{self.id}"
 
 
 class PanierItem(models.Model):
@@ -35,23 +35,9 @@ class PanierItem(models.Model):
         related_name='items'
     )
 
-    produit = models.ForeignKey(
-        Produit,
-        on_delete=models.CASCADE
-    )
+    produit = models.ForeignKey(Produit, on_delete=models.CASCADE)
 
-    quantite = models.PositiveIntegerField(
-        default=1
-    )
-
-    created_at = models.DateTimeField(
-        auto_now_add=True
-    )
+    quantite = models.PositiveIntegerField(default=1)
 
     def total_item(self):
-
         return self.produit.prix * self.quantite
-
-    def __str__(self):
-
-        return self.produit.nom

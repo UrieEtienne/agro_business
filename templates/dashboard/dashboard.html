@@ -2,83 +2,170 @@
 
 {% block content %}
 
-<div class="container mt-5">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <h1 class="mb-5 text-success">
-        Dashboard Entreprise
-    </h1>
+<style>
 
-    <div class="row">
+/* =========================
+   🎨 STYLE GLOBAL MODERNE
+========================= */
 
-        <!-- PUBLICATIONS -->
-        <div class="col-md-3 mb-4">
+body {
+    background: #f6f8fb;
+}
 
-            <div class="card shadow border-0">
+.dashboard-title {
+    font-weight: 900;
+    font-size: 46px;
+    color: #1f3b57;
+    background-color: #5eecff;
+}
 
-                <div class="card-body text-center">
+.kpi-card {
+    border-radius: 16px;
+    color: white;
+    padding: 20px;
+    transition: 0.3s;
+    overflow: hidden;
+}
 
-                    <i class="fas fa-image fa-3x text-success mb-3"></i>
+.kpi-card:hover {
+    transform: translateY(-5px);
+}
 
-                    <h2>{{ total_media }}</h2>
+/* 🎨 GRADIENTS KPI */
+.bg-blue { background: linear-gradient(135deg,#4f8cff,#3761ff); }
+.bg-green { background: linear-gradient(135deg,#00c48c,#00a173); }
+.bg-purple { background: linear-gradient(135deg,#a66cff,#6a4cff); }
+.bg-red { background: linear-gradient(135deg,#ff5e7d,#ff2e63); }
+.bg-orange { background: linear-gradient(135deg,#ffb347,#ff7b00); }
 
-                    <h5>Publications</h5>
+.card-box {
+    background: rgb(40, 39, 97);
+    color: #f6f8fb;
+    font-weight: bold;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+}
 
-                </div>
+.table th {
+    font-size: 13px;
+    color: #6c7a89;
+}
 
-            </div>
+.badge-status {
+    padding: 6px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+}
+</style>
+
+<div class="container py-4">
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h1 class="dashboard-title">📊 Tableau de bord Eden Agro Business & Service</h1>
+            <p class="text-muted">Vue globale de votre activité en temps réel</p>
+        </div>
+        <!-- bouton facture -->
+        <div class="kpi-card bg-red text-center">
+
+            <i class="fa fa-file-invoice fa-2x"></i>
+
+            <h2 class="mt-2">{{ factures_attente }}</h2>
+
+            <p class="mb-2">Factures</p>
+
+            <a href="{% url 'liste_factures' %}"
+            class="btn btn-light btn-sm px-3 py-1"
+            style="border-radius: 20px; font-size: 12px;">
+                📄 Voir
+            </a>
 
         </div>
+    </div>
 
-        <!-- PRODUITS -->
-        <div class="col-md-3 mb-4">
+    <!-- ================= KPI ================= -->
+    <div class="row g-4">
 
-            <div class="card shadow border-0">
-
-                <div class="card-body text-center">
-
-                    <i class="fas fa-seedling fa-3x text-success mb-3"></i>
-
-                    <h2>{{ total_produits }}</h2>
-
-                    <h5>Produits</h5>
-
-                </div>
-
+        <div class="col-md-3">
+            <div class="kpi-card bg-blue">
+                <i class="fa fa-box fa-2x"></i>
+                <h2 class="mt-3">{{ total_produits }}</h2>
+                <p>Produits</p>
             </div>
-
         </div>
 
-        <!-- BLOG -->
-        <div class="col-md-3 mb-4">
-
-            <div class="card shadow border-0">
-
-                <div class="card-body text-center">
-
-                    <i class="fas fa-newspaper fa-3x text-success mb-3"></i>
-
-                    <h2>{{ total_posts }}</h2>
-
-                    <h5>Articles</h5>
-
-                </div>
-
+        <div class="col-md-3">
+            <div class="kpi-card bg-green">
+                <i class="fa fa-shopping-cart fa-2x"></i>
+                <h2 class="mt-3">{{ total_commandes }}</h2>
+                <p>Commandes</p>
             </div>
-
         </div>
 
-        <!-- CONTACTS -->
-        <div class="col-md-3 mb-4">
+        <div class="col-md-3">
+            <div class="kpi-card bg-orange">
+                <i class="fa fa-cart-plus fa-2x"></i>
+                <h2 class="mt-3">{{ panier_actifs }}</h2>
+                <p>Paniers actifs</p>
+            </div>
+        </div>
 
-            <div class="card shadow border-0">
+        <div class="col-md-3">
+            <div class="kpi-card bg-red">
+                <i class="fa fa-file-invoice fa-2x"></i>
+                <h2 class="mt-3">{{ factures_attente }}</h2>
+                <p>Factures en attente</p>
+            </div>
+        </div>
 
-                <div class="card-body text-center">
+    </div>
 
-                    <i class="fas fa-envelope fa-3x text-success mb-3"></i>
+    <!-- ================= GRAPHIQUE ================= -->
+    <div class="row mt-5">
 
-                    <h2>{{ total_contacts }}</h2>
+        <div class="col-md-8">
+            <div class="card-box">
 
-                    <h5>Messages</h5>
+                <h5>📈 Évolution des ventes</h5>
+
+                <canvas id="chartVentes"></canvas>
+
+            </div>
+        </div>
+
+        <!-- ================= FUNNEL STYLE ================= -->
+        <div class="col-md-4">
+
+            <div class="card-box">
+
+                <h5>📊 Entonnoir d’acquisition</h5>
+
+                <div class="mt-3">
+
+                    <div class="mb-2">Impressions <b>230K</b></div>
+                    <div class="progress mb-3">
+                        <div class="progress-bar bg-primary" style="width:100%"></div>
+                    </div>
+
+                    <div class="mb-2">Clics <b>9.4K</b></div>
+                    <div class="progress mb-3">
+                        <div class="progress-bar bg-info" style="width:60%"></div>
+                    </div>
+
+                    <div class="mb-2">Nouveaux utilisateurs <b>1.3K</b></div>
+                    <div class="progress mb-3">
+                        <div class="progress-bar bg-success" style="width:35%"></div>
+                    </div>
+
+                    <div class="mb-2">Clients <b>99</b></div>
+                    <div class="progress">
+                        <div class="progress-bar bg-danger" style="width:15%"></div>
+                    </div>
 
                 </div>
 
@@ -88,6 +175,126 @@
 
     </div>
 
+    <!-- Gestion des stocks -->
+    <div class="row mt-5">
+
+        <div class="col-md-6">
+            <div class="card-box">
+                <h5>📦 Stocks actuels</h5>
+                <canvas id="chartStocks"></canvas>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card-box">
+                <h5>🔁 Mouvements de stock</h5>
+                <canvas id="chartMouvements"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ================= TABLE ================= -->
+    <div class="row mt-5">
+
+        <div class="col-md-12">
+
+            <div class="card-box">
+
+                <h5>🧾 Commandes récentes</h5>
+
+                <table class="table table-hover mt-3">
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Client</th>
+                            <th>Produit</th>
+                            <th>Statut</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for c in commandes_recentes %}
+                        <tr>
+                            <td>#{{ c.id }}</td>
+                            <td>{{ c.nom_client }}</td>
+                            <td>{{ c.produit.nom }}</td>
+                            <td>
+                                <span class="badge bg-warning text-dark badge-status">
+                                    {{ c.statut }}
+                                </span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
+
+<!-- CHART JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const ctx = document.getElementById('chartVentes');
+
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"],
+        datasets: [{
+            label: "Ventes",
+            data: [12, 19, 3, 5, 2, 8, 15],
+            borderColor: "#4f8cff",
+            backgroundColor: "rgba(79,140,255,0.2)",
+            fill: true,
+            tension: 0.4
+        }]
+    }
+});
+</script>
+<script>
+const stockLabels = JSON.parse('{{ stock_labels|escapejs }}');
+const stockData = JSON.parse('{{ stock_data|escapejs }}');
+
+const mouvLabels = JSON.parse('{{ mouv_labels|escapejs }}');
+const mouvData = JSON.parse('{{ mouv_data|escapejs }}');
+
+/* ================= STOCKS ================= */
+new Chart(document.getElementById('chartStocks'), {
+    type: 'bar',
+    data: {
+        labels: stockLabels,
+        datasets: [{
+            label: "Quantité en stock",
+            data: stockData,
+            backgroundColor: "#4f8cff"
+        }]
+    }
+});
+
+/* ================= MOUVEMENTS ================= */
+new Chart(document.getElementById('chartMouvements'), {
+    type: 'line',
+    data: {
+        labels: mouvLabels,
+        datasets: [{
+            label: "Mouvements",
+            data: mouvData,
+            borderColor: "#00c48c",
+            backgroundColor: "rgba(0,196,140,0.2)",
+            fill: true,
+            tension: 0.4
+        }]
+    }
+});
+</script>
 
 {% endblock %}

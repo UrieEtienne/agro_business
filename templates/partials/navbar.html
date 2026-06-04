@@ -7,7 +7,7 @@
         <!-- LOGO + TITRE -->
         <a class="navbar-brand d-flex align-items-center gap-2" href="/">
 
-            <img src="{% static 'images/logo.png' %}"
+            <img src="{% static 'images/logo.jpg' %}"
                  alt="Logo Eden Agro"
                  class="navbar-logo">
 
@@ -46,7 +46,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/blog/">Blog</a>
+                    <a class="nav-link" href="/blog/">Actualite</a>
                 </li>
 
                 <li class="nav-item">
@@ -62,7 +62,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/contact/">Contact</a>
                     </li>
-
 
                     {% if user.is_staff %}
                     <li class="nav-item">

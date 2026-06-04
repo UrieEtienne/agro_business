@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <h2>Commander {{ produit.nom }}</h2>
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        <input
+            type="text"
+            name="nom"
+            class="form-control mb-3"
+            placeholder="Nom complet"
+            required
+        >
+
+        <input
+            type="text"
+            name="telephone"
+            class="form-control mb-3"
+            placeholder="Téléphone"
+            required
+        >
+
+        <textarea
+            name="adresse"
+            class="form-control mb-3"
+            placeholder="Adresse"
+            required
+        ></textarea>
+
+        <input
+            type="number"
+            name="quantite"
+            value="1"
+            min="1"
+            class="form-control mb-3"
+        >
+
+        <button
+            type="submit"
+            class="btn btn-success"
+        >
+            Envoyer la commande
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

@@ -27,7 +27,16 @@ class Livraison(models.Model):
         null=True,
         blank=True
     )
-   
+
+    # CODE SUIVI AUTOMATIQUE
+    code_suivi = models.CharField(
+        max_length=20,
+        unique=True,
+        blank=True,
+        null=True
+    )
+
+    # SAVE AUTOMATIQUE
     def save(self, *args, **kwargs):
 
         if not self.code_suivi:

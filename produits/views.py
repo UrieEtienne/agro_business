@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from .models import Produit
-
+from .models import Produit, Categorie
 
 def produits(request):
+
+    categories = Categorie.objects.prefetch_related('produits').all()
 
     produits_list = Produit.objects.filter(
         disponible=True
@@ -12,6 +13,15 @@ def produits(request):
         request,
         "produits/produits.html",
         {
-            "produits": produits_list
+            "categories": categories,
+            "produits": produits_list,
         }
     )
+
+def categorie_detail(request, slug):
+
+    categorie = Categorie.objects.get(slug=slug)
+
+    return render(request, "produits/categorie.html", {
+        "categorie": categorie
+    })

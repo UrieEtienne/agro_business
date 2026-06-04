@@ -21,12 +21,8 @@ def liste_factures(request):
     )
 
 
-def facture_pdf(request, facture_id):
-
-    facture = get_object_or_404(
-        Facture,
-        id=facture_id
-    )
+def facture_pdf(request, id):
+    facture = Facture.objects.get(id=id)
 
     response = HttpResponse(
         content_type='application/pdf'

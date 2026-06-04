@@ -9,4 +9,6 @@ urlpatterns = [
         name='produits'
     ),
 
+    path('categorie/<slug:slug>/', views.categorie_detail, name='categorie_detail')
+
 ]
