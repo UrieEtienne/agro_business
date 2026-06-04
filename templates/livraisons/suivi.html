@@ -4,6 +4,9 @@
 <head>
     <title>Suivi livraison</title>
 
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
     <style>
         body {
             font-family: Arial;
@@ -24,14 +27,18 @@
             border-radius: 5px;
             display: inline-block;
             font-weight: bold;
+            color: white;
         }
 
         .en_attente { background: #ffc107; color: black; }
-        .en_cours { background: #0d6efd; color: white; }
-        .livree { background: #198754; color: white; }
+        .en_preparation { background: #6c757d; }
+        .expediee { background: #0d6efd; }
+        .en_livraison { background: #198754; }
+        .livree { background: #28a745; }
+        .annulee { background: #dc3545; }
 
         #map {
-            height: 400px;
+            height: 400px !important;
             width: 100%;
             border-radius: 10px;
         }
@@ -45,12 +52,13 @@
 <!-- INFO -->
 <div class="box">
 
-    <p><b>Quartier :</b> {{ livraison.quartier }}</p>
+    <p><b>Ville :</b> {{ livraison.ville }}</p>
+    <p><b>Adresse :</b> {{ livraison.adresse }}</p>
 
     <p>
         <b>Statut :</b>
         <span class="status {{ livraison.statut }}">
-            {{ livraison.statut }}
+            {{ livraison.get_statut_display }}
         </span>
     </p>
 
@@ -58,45 +66,45 @@
 
 <!-- MAP -->
 <div class="box">
-
     <div id="map"></div>
-
 </div>
 
-<script>
-function initMap() {
-
-    const position = {
-        lat: parseFloat("{{ livraison.latitude|default:9.6412 }}"),
-        lng: parseFloat("{{ livraison.longitude|default:-13.5784 }}")
-    };
-
-    const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 13,
-        center: position
-    });
-
-    new google.maps.Marker({
-        position: position,
-        map: map
-    });
-}
-</script>
-
-<!-- ⚠️ AJOUTER TA VRAIE CLE API ICI -->
-<script src="https://maps.googleapis.com/maps/api/js?key=TA_CLE_API&callback=initMap" async defer></script>
-<div id="map" style="height:400px;"></div>
+<!-- Leaflet JS (IMPORTANT) -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
-var map = L.map('map').setView([9.6412, -13.5784], 13);
+var lat = JSON.parse(document.getElementById("lat-data").textContent);
+var lng = JSON.parse(document.getElementById("lng-data").textContent);
+
+var map = L.map('map').setView([lat, lng], 13);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap'
 }).addTo(map);
 
-L.marker([9.6412, -13.5784]).addTo(map)
-    .bindPopup('Livraison ici')
+L.marker([lat, lng])
+.addTo(map)
+.bindPopup("📦 Livraison ici")
+.openPopup();
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    var lat = parseFloat("{{ livraison.latitude|default:'9.6412' }}");
+    var lng = parseFloat("{{ livraison.longitude|default:'-13.5784' }}");
+
+    var map = L.map('map').setView([lat, lng], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    L.marker([lat, lng])
+    .addTo(map)
+    .bindPopup("📦 Livraison ici")
     .openPopup();
+
+});
 </script>
 
 </body>
