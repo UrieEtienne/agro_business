@@ -5,13 +5,14 @@
     <div class="container">
 
         <!-- LOGO + TITRE -->
-        <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+        <a class="navbar-brand d-flex align-items-center gap-2 flex-wrap" href="/">
 
             <img src="{% static 'images/logo.jpg' %}"
                  alt="Logo Eden Agro"
-                 class="navbar-logo">
+                 class="navbar-logo"
+                 style="max-height: 45px; width: auto;">
 
-            <span class="company-name">
+            <span class="company-name d-none d-sm-inline">
                 Eden Agro Business & Service
             </span>
 
@@ -30,8 +31,7 @@
         <!-- MENU -->
         <div class="collapse navbar-collapse" id="navbarNav">
 
-            <!-- LIENS À GAUCHE / CENTRE -->
-            <ul class="navbar-nav ms-auto align-items-lg-center gap-2">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-2 text-center text-lg-start">
 
                 <li class="nav-item">
                     <a class="nav-link" href="/">Accueil</a>
@@ -52,7 +52,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/produits/">Produits</a>
                 </li>
-                <!-- ESPACE CLIENT -->
+
                 {% if user.is_authenticated %}
 
                     <li class="nav-item">
@@ -70,9 +70,9 @@
                     {% endif %}
 
                     <li class="nav-item">
-                        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                        <form action="{% url 'logout' %}" method="post">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-logout">
+                            <button type="submit" class="btn btn-sm btn-danger w-100 mt-2 mt-lg-0">
                                 Déconnexion
                             </button>
                         </form>
@@ -81,7 +81,7 @@
                 {% else %}
 
                     <li class="nav-item">
-                        <a class="btn btn-login" href="{% url 'login' %}">
+                        <a class="btn btn-primary btn-sm w-100 mt-2 mt-lg-0" href="{% url 'login' %}">
                             Connexion
                         </a>
                     </li>

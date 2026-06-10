@@ -11,10 +11,12 @@ SECRET_KEY = 'django-insecure-ny2y&gx*7g7m1%h$rshf!bgp84*zhh8i9etxwxm$9=*$a8q143
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    "localhost",
     "127.0.0.1",
-    ".onrender.com"
+    "localhost",
+    "edenagrobusiness-service.com",
+    "www.edenagrobusiness-service.com",
 ]
+
 LOGIN_URL = "/admin/login/"
 LOGIN_REDIRECT_URL = "/admin/"
 LOGOUT_REDIRECT_URL = "/admin/login/"
@@ -224,10 +226,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # DATABASE
 # =========================
 DATABASES = {
-    'default': dj_database_url.config(
-        default='sqlite:///db.sqlite3',
-        conn_max_age=600
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'agro_business',
+        'USER': 'agro_user',
+        'PASSWORD': 'strongpassword',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
 }
 
 
@@ -285,9 +291,11 @@ STATICFILES_FINDERS = [
 # =========================
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = '/var/www/agro_business/staticfiles'
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+WHITENOISE_IGNORE_PATTERNS = [
+    "*.map"
+]
 
 # =========================
 # MEDIA
@@ -295,7 +303,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = '/var/www/agro_business/media'
 
 # La Securite
 
